@@ -4,6 +4,7 @@ import MainCarousel from '../components/MainCarousel';
 import StructureCard from '../components/StructureCard';
 import ExpandableKidsArea from '../components/ExpandableKidsArea';
 import ServiceCard from '../components/ServiceCard';
+import Navbar from '../components/Navbar';
 
 export default function Home() {
   // Array com as imagens do carrossel
@@ -149,9 +150,11 @@ export default function Home() {
 
   return (
     <div className="flex flex-col items-center min-h-screen overflow-x-hidden">
+      {/* Navbar */}
+      <Navbar />
 
       {/* Seção do Carrossel - Fundo em azul escuro/roxo */}
-      <section className="w-full bg-gradient-to-br from-indigo-950 to-purple-900 relative pb-16">
+      <section id="inicio" className="w-full bg-gradient-to-br from-indigo-950 to-purple-900 relative pb-16 pt-24">
         {/* Forma em zigue-zague no final da seção */}
         <div className="absolute bottom-0 left-0 w-full h-20 overflow-hidden">
           <svg
@@ -172,7 +175,7 @@ export default function Home() {
       </section>
 
       {/* Seção da Estrutura - Fundo em rosa claro */}
-      <section className="w-full bg-pink-100 relative pb-16">
+      <section id="estrutura" className="w-full bg-pink-100 relative pb-16">
         {/* Forma em zigue-zague no final da seção */}
         <div className="absolute bottom-0 left-0 w-full h-20 overflow-hidden">
           <svg
@@ -218,7 +221,7 @@ export default function Home() {
       </section>
 
       {/* Seção dos Serviços - Fundo em âmbar claro */}
-      <section className="w-full bg-amber-50 relative">
+      <section id="servicos" className="w-full bg-amber-50 relative">
         {/* Forma em zigue-zague no final da seção - mais irregular e divertida */}
         <div className="absolute bottom-0 left-0 w-full h-20 overflow-hidden">
           <svg
@@ -255,8 +258,38 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Seção de Contato - Adicionando uma seção simples de contato */}
+      <section id="contato" className="w-full bg-indigo-950 text-white py-16">
+        <div className="container mx-auto px-4 w-[90%] max-w-[1920px]">
+          <h2 className="text-4xl font-bold text-center mb-8">Entre em Contato</h2>
+
+          <div className="max-w-lg mx-auto bg-indigo-900/50 p-6 rounded-xl">
+            <div className="flex flex-col space-y-4">
+              <div>
+                <label htmlFor="nome" className="block text-sm font-medium mb-1">Nome</label>
+                <input type="text" id="nome" className="w-full px-4 py-2 rounded bg-white/10 border border-indigo-400" />
+              </div>
+
+              <div>
+                <label htmlFor="email" className="block text-sm font-medium mb-1">Email</label>
+                <input type="email" id="email" className="w-full px-4 py-2 rounded bg-white/10 border border-indigo-400" />
+              </div>
+
+              <div>
+                <label htmlFor="mensagem" className="block text-sm font-medium mb-1">Mensagem</label>
+                <textarea id="mensagem" rows={4} className="w-full px-4 py-2 rounded bg-white/10 border border-indigo-400"></textarea>
+              </div>
+
+              <button className="bg-purple-600 hover:bg-purple-500 text-white px-6 py-3 rounded-lg transition-colors font-medium">
+                Enviar Mensagem
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Footer - Fundo em azul escuro/roxo */}
-      <footer className="w-full bg-indigo-950 text-white py-10">
+      <footer className="w-full bg-indigo-950 text-white py-10 border-t border-indigo-800">
         <div className="container mx-auto text-center">
           <p>&copy; {new Date().getFullYear()} Casa de Festas - Todos os direitos reservados</p>
         </div>
