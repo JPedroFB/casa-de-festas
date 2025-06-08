@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 
 interface KidsImage {
@@ -23,12 +23,13 @@ export default function ExpandableKidsArea({
 }: ExpandableKidsAreaProps) {
   const [expanded, setExpanded] = useState(false);
   const [currentSlide, setCurrentSlide] = useState(0);
+  const cardRef = useRef<HTMLDivElement>(null);
 
   // Gera o array de imagens/legendas com base nos items
   const kidsImages: KidsImage[] = items.map((item, index) => ({
     // Alternar entre imagens disponíveis para simular várias fotos
     image: index % 2 === 0 ? "/images/brinquedos.png" : (
-      index % 3 === 0 ? "/images/mesas.png" : "/images/mesas2.png"
+      index % 3 === 0 ? "/images/brinquedos.png" : "/images/mesas2.png"
     ),
     caption: item
   }));
@@ -45,14 +46,33 @@ export default function ExpandableKidsArea({
     );
   };
 
+  // Rolar a página para mostrar o conteúdo expandido
+  useEffect(() => {
+    if (expanded && cardRef.current) {
+      // Adicionando um respiro de 20 pixels do topo
+      const yOffset = -20;
+      const y = cardRef.current.getBoundingClientRect().top + window.pageYOffset + yOffset;
+      window.scrollTo({ top: y, behavior: 'smooth' });
+    }
+  }, [expanded]);
+
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 border border-gray-100 dark:border-gray-700">
-      <div className="flex flex-col">
+    <div
+      ref={cardRef}
+      className={`bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden hover:shadow-xl 
+                transition-all duration-500 border border-gray-100 dark:border-gray-700
+                ${expanded ? 'flex flex-col' : ''}`}
+    >
+      {/* Estrutura geral que muda entre linha e coluna */}
+      <div className={`${expanded ? 'flex-col' : 'flex flex-col md:flex-row'}`}>
+
         {/* Imagem área das crianças */}
         <div
           className={`${
-            expanded ? "w-full aspect-video" : "md:w-1/3 aspect-square"
-          } relative overflow-hidden transition-all duration-500 md:float-left`}
+            expanded 
+              ? "w-full aspect-video" 
+              : "w-full md:w-1/3 aspect-square"
+          } relative overflow-hidden transition-all duration-500`}
         >
           {!expanded ? (
             // Modo normal - imagem estática
@@ -151,8 +171,8 @@ export default function ExpandableKidsArea({
           )}
         </div>
 
-        {/* Conteúdo */}
-        <div className={`p-6 md:p-8 ${expanded ? "w-full" : "md:w-2/3"}`}>
+        {/* Conteúdo à direita (modo não expandido) ou abaixo (modo expandido) */}
+        <div className={`p-6 md:p-8 ${expanded ? 'w-full' : 'w-full md:w-2/3'}`}>
           <div className="flex items-center mb-4 justify-between flex-wrap">
             <div className="flex items-center">
               <div className="bg-amber-100 dark:bg-amber-900/40 text-amber-600 dark:text-amber-300 w-10 h-10 rounded-full flex items-center justify-center font-bold mr-3 text-lg">
@@ -161,10 +181,18 @@ export default function ExpandableKidsArea({
               <h3 className="text-2xl font-bold">{title}</h3>
             </div>
 
-            {/* Botão Ver Mais */}
+            {/* Botão Ver Mais - reposicionado de volta à posição original */}
             <button
               onClick={() => setExpanded(!expanded)}
-              className="px-4 py-2 bg-amber-500 hover:bg-amber-600 text-white rounded-lg transition-all duration-300 flex items-center font-medium mt-2 md:mt-0"
+              className={`
+                px-6 py-3 text-white rounded-xl transition-all duration-300 
+                shadow-lg font-medium text-base flex items-center justify-center mt-2 md:mt-0
+                ${expanded 
+                  ? "bg-gradient-to-r from-amber-500 to-amber-400 hover:from-amber-600 hover:to-amber-500" 
+                  : "bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600"
+                }
+                transform hover:scale-[1.02] active:scale-[0.98]
+              `}
             >
               {expanded ? (
                 <>
@@ -181,11 +209,13 @@ export default function ExpandableKidsArea({
                     className="mr-2"
                   >
                     <path d="M19 12H5" />
+                    <path d="M12 19l-7-7 7-7" />
                   </svg>
-                  Ver Menos
+                  Recolher
                 </>
               ) : (
                 <>
+                  Explorar Área Kids
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="20"
@@ -196,11 +226,11 @@ export default function ExpandableKidsArea({
                     strokeWidth="2"
                     strokeLinecap="round"
                     strokeLinejoin="round"
-                    className="mr-2"
+                    className="ml-2"
                   >
-                    <path d="M12 5v14M5 12h14" />
+                    <path d="M5 12h14" />
+                    <path d="M12 5l7 7-7 7" />
                   </svg>
-                  Ver Mais
                 </>
               )}
             </button>
@@ -215,7 +245,7 @@ export default function ExpandableKidsArea({
               ))}
             </ul>
           ) : (
-            <div className="mt-4 text-gray-600 dark:text-gray-300">
+            <div className="text-gray-600 dark:text-gray-300 mb-4">
               <p className="mb-4">
                 Nossa área kids foi projetada para garantir que os pequenos
                 convidados tenham uma experiência incrível, permitindo que os
