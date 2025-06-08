@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 
 interface ServiceCardProps {
   title: string;
@@ -36,12 +36,13 @@ export default function ServiceCard({
 }: ServiceCardProps) {
   const [expanded, setExpanded] = useState(false);
   const [currentImage, setCurrentImage] = useState(0);
+  const cardRef = useRef<HTMLDivElement>(null);
 
   // Imagens do cardápio (amostra)
   const menuImages: MenuImage[] = [
-    { src: "/images/mesas.png", alt: "Salgados fritos" },
-    { src: "/images/mesas2.png", alt: "Salgados de forno" },
-    { src: "/images/brinquedos.png", alt: "Bebidas" },
+    { src: "/images/salgados.png", alt: "Salgados fritos" },
+    { src: "/images/salgados.png", alt: "Salgados de forno" },
+    { src: "/images/salgados.png", alt: "Bebidas" },
   ];
 
   // Categorias do cardápio
@@ -100,8 +101,19 @@ export default function ServiceCard({
     setExpanded(!expanded);
   };
 
+  // Efeito para rolar a página quando o card é expandido
+  useEffect(() => {
+    if (expanded && cardRef.current) {
+      // Adicionando um respiro de 20 pixels do topo
+      const yOffset = -20;
+      const y = cardRef.current.getBoundingClientRect().top + window.pageYOffset + yOffset;
+      window.scrollTo({ top: y, behavior: 'smooth' });
+    }
+  }, [expanded]);
+
   return (
     <div
+      ref={cardRef}
       className={`bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden hover:shadow-xl
                 transition-all duration-500 border border-gray-100 dark:border-gray-700
                 ${expanded ? "flex flex-col" : ""}`}
@@ -111,7 +123,7 @@ export default function ServiceCard({
         {/* Imagem */}
         <div
           className={`
-            ${expanded ? "w-full aspect-video" : "md:w-1/3 aspect-square"}
+            ${expanded ? "w-full h-64" : "md:w-1/3 aspect-square"}
             relative overflow-hidden transition-all duration-500
           `}
         >

@@ -98,7 +98,7 @@ export default function Home() {
         "Bebidas não-alcoólicas inclusas e opção de open bar personalizado",
       ],
       buttonText: "Conheça o Cardápio",
-      buttonLink: "#cardapio", // Você pode mudar para uma rota específica do cardápio se quiser
+      buttonLink: "#cardapio",
     },
     {
       title: "Equipe Profissional",
@@ -126,6 +126,8 @@ export default function Home() {
         "Gerente de festas que acompanha toda a execução do evento",
         "Equipe de limpeza e manutenção durante todo o evento",
       ],
+      buttonText: undefined,
+      buttonLink: undefined,
     },
     {
       title: "Segurança Completa",
@@ -153,6 +155,8 @@ export default function Home() {
         "Controle de acesso na entrada com lista de convidados",
         "Protocolos de emergência e primeiros socorros disponíveis",
       ],
+      buttonText: undefined,
+      buttonLink: undefined,
     },
   ];
 
