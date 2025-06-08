@@ -58,7 +58,6 @@ const Navbar = () => {
       <div className="container mx-auto px-4 py-4 flex items-center justify-between">
         {/* Logo */}
         <Link href="/" className="flex items-center space-x-2">
-          <Image src="/next.svg" alt="Casa de Festas" width={40} height={40} className="invert" />
           <span className={`text-xl hidden sm:inline ${hennyPenny.className}`}>Mansão dos Sonhos</span>
         </Link>
 
