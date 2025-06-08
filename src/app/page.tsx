@@ -179,9 +179,9 @@ export default function Home() {
           </svg>
         </div>
 
-        <div className="w-full flex flex-col justify-center items-center py-8 px-4">
+        <div className="w-full flex flex-col justify-center items-center py-8 px-2.5 sm:px-4">
           {/* Mensagem de boas-vindas */}
-          <div className="w-[90%] max-w-[1920px] mb-10 text-center">
+          <div className="w-full sm:w-[90%] max-w-[1920px] mb-10 text-center px-2.5 sm:px-0">
             <h1 className="text-5xl md:text-6xl font-bold text-white mb-4">
               <span className={`bg-clip-text text-transparent bg-gradient-to-r from-amber-300 to-pink-300 ${hennyPenny.className}`}>Mansão dos Sonhos</span>
             </h1>
@@ -190,7 +190,7 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="w-[90%] max-w-[1920px]">
+          <div className="w-full sm:w-[90%] max-w-[1920px] px-0 sm:px-0">
             <MainCarousel images={slideImages} />
           </div>
         </div>
@@ -210,15 +210,15 @@ export default function Home() {
           </svg>
         </div>
 
-        <div className="container mx-auto py-16 px-4 w-[90%] max-w-[1920px]">
-          <h2 className="text-4xl font-bold text-center mb-4 bg-clip-text text-transparent bg-gradient-to-r from-indigo-600 to-purple-600">
+        <div className="w-full sm:container mx-auto py-16 px-2.5 sm:px-4 sm:w-[90%] max-w-[1920px]">
+          <h2 className="text-4xl font-bold text-center mb-4 bg-clip-text text-transparent bg-gradient-to-r from-indigo-600 to-purple-600 px-2.5 sm:px-0">
             <span className={hennyPenny.className}>Nossa Estrutura</span>
           </h2>
-          <p className="text-center text-gray-600 max-w-2xl mx-auto mb-12">
+          <p className="text-center text-gray-600 max-w-2xl mx-auto mb-12 px-2.5 sm:px-0">
             Tudo o que você precisa para criar momentos inesquecíveis
           </p>
 
-          <div className="space-y-8">
+          <div className="space-y-8 px-0">
             {/* Cards da estrutura */}
             {structureItems.map((item) => (
               <StructureCard
@@ -256,15 +256,15 @@ export default function Home() {
           </svg>
         </div>
 
-        <div className="container mx-auto py-16 px-4 w-[90%] max-w-[1920px] mb-20">
-          <h2 className="text-4xl font-bold text-center mb-4 bg-clip-text text-transparent bg-gradient-to-r from-purple-600 to-indigo-600">
+        <div className="w-full sm:container mx-auto py-16 px-2.5 sm:px-4 sm:w-[90%] max-w-[1920px] mb-20">
+          <h2 className="text-4xl font-bold text-center mb-4 bg-clip-text text-transparent bg-gradient-to-r from-purple-600 to-indigo-600 px-2.5 sm:px-0">
             <span className={hennyPenny.className}>Nossos Serviços</span>
           </h2>
-          <p className="text-center text-gray-600 max-w-2xl mx-auto mb-12">
+          <p className="text-center text-gray-600 max-w-2xl mx-auto mb-12 px-2.5 sm:px-0">
             Oferecemos serviços completos para que seu evento seja perfeito do início ao fim
           </p>
 
-          <div className="space-y-8">
+          <div className="space-y-8 px-0">
             {/* Cards de serviços */}
             {services.map((service, index) => (
               <ServiceCard
@@ -296,16 +296,16 @@ export default function Home() {
           </svg>
         </div>
 
-        <div className="container mx-auto py-16 px-4 w-[90%] max-w-[1920px]">
-          <h2 className="text-4xl font-bold text-center mb-4 bg-clip-text text-transparent bg-gradient-to-r from-pink-500 to-purple-500">
+        <div className="w-full sm:container mx-auto py-16 px-2.5 sm:px-4 sm:w-[90%] max-w-[1920px]">
+          <h2 className="text-4xl font-bold text-center mb-4 bg-clip-text text-transparent bg-gradient-to-r from-pink-500 to-purple-500 px-2.5 sm:px-0">
             <span className={hennyPenny.className}>Nossas Decorações</span>
           </h2>
-          <p className="text-center text-gray-600 max-w-2xl mx-auto mb-12">
+          <p className="text-center text-gray-600 max-w-2xl mx-auto mb-12 px-2.5 sm:px-0">
             Transforme sua celebração em um evento mágico com nossas decorações temáticas personalizadas
           </p>
 
           {/* Mini galeria de decorações */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 mb-12 px-2.5 sm:px-0">
             <div className="rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-shadow group">
               <div className="relative h-64 overflow-hidden">
                 <img
@@ -347,7 +347,7 @@ export default function Home() {
           </div>
 
           {/* Botão para ver todas as decorações */}
-          <div className="text-center">
+          <div className="text-center px-2.5 sm:px-0">
             <a
               href="/decoracoes"
               className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-purple-600 to-pink-500 text-white font-medium rounded-lg shadow-md hover:from-purple-700 hover:to-pink-600 transition-all hover:shadow-lg"
@@ -363,7 +363,7 @@ export default function Home() {
 
       {/* Seção de Contato - Renovada com redes sociais e mapa */}
       <section id="contato" className="w-full bg-indigo-950 text-white py-16">
-        <div className="container mx-auto px-4 w-[90%] max-w-[1920px]">
+        <div className="w-full sm:container mx-auto px-2.5 sm:px-4 sm:w-[90%] max-w-[1920px]">
           <h2 className="text-4xl font-bold text-center mb-8">
             <span className={hennyPenny.className}>Entre em Contato</span>
           </h2>
@@ -451,10 +451,11 @@ export default function Home() {
 
       {/* Footer - Fundo em azul escuro/roxo */}
       <footer className="w-full bg-indigo-950 text-white py-10 border-t border-indigo-800">
-        <div className="container mx-auto text-center">
+        <div className="w-full sm:container mx-auto text-center px-2.5 sm:px-0">
           <p>&copy; {new Date().getFullYear()} Casa de Festas - Todos os direitos reservados</p>
         </div>
       </footer>
     </div>
   );
 }
+
