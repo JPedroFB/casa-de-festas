@@ -167,7 +167,17 @@ export default function Home() {
           </svg>
         </div>
 
-        <div className="w-full flex justify-center items-center py-16 px-4">
+        <div className="w-full flex flex-col justify-center items-center py-8 px-4">
+          {/* Mensagem de boas-vindas */}
+          <div className="w-[90%] max-w-[1920px] mb-10 text-center">
+            <h1 className="text-4xl md:text-6xl font-bold text-white mb-4">
+              Bem-vindo à <span className="bg-clip-text text-transparent bg-gradient-to-r from-amber-300 to-pink-300">Mansão dos Sonhos</span>
+            </h1>
+            <p className="text-xl text-white/90 max-w-3xl mx-auto">
+              O lugar perfeito para transformar momentos especiais em lembranças inesquecíveis
+            </p>
+          </div>
+
           <div className="w-[90%] max-w-[1920px]">
             <MainCarousel images={slideImages} />
           </div>
