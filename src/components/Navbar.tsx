@@ -14,6 +14,7 @@ const Navbar = () => {
   const [scrollPosition, setScrollPosition] = useState(0);
   const [showNavbar, setShowNavbar] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -47,6 +48,13 @@ const Navbar = () => {
       // Se não estamos na página inicial, redireciona para a página inicial com âncora
       window.location.href = `/#${sectionId}`;
     }
+
+    // Fecha o menu mobile após clicar em um link
+    setMobileMenuOpen(false);
+  };
+
+  const toggleMobileMenu = () => {
+    setMobileMenuOpen(!mobileMenuOpen);
   };
 
   return (
@@ -55,44 +63,129 @@ const Navbar = () => {
         showNavbar ? "translate-y-0" : "-translate-y-full"
       }`}
     >
-      <div className="container mx-auto px-4 py-4 flex items-center justify-between">
-        {/* Logo */}
-        <Link href="/" className="flex items-center space-x-2">
-          <span className={`text-xl hidden sm:inline ${hennyPenny.className}`}>Mansão dos Sonhos</span>
-        </Link>
+      <div className="container mx-auto px-4 py-4">
+        <div className="flex items-center justify-between">
+          {/* Logo */}
+          <Link href="/" className="flex items-center space-x-2">
+            <span className={`text-xl ${hennyPenny.className}`}>Mansão dos Sonhos</span>
+          </Link>
 
-        {/* Links de navegação */}
-        <div className="flex items-center space-x-1 sm:space-x-4">
-          <button
-            onClick={() => scrollToSection("inicio")}
-            className="px-2 sm:px-4 py-2 rounded hover:bg-purple-900 transition-colors"
-          >
-            Início
-          </button>
-          <button
-            onClick={() => scrollToSection("estrutura")}
-            className="px-2 sm:px-4 py-2 rounded hover:bg-purple-900 transition-colors"
-          >
-            Estrutura
-          </button>
-          <button
+          {/* Ícone de menu mobile */}
+          <div className="md:hidden">
+            <button
+              onClick={toggleMobileMenu}
+              className="p-2 focus:outline-none focus:ring-2 focus:ring-purple-500 rounded-md"
+              aria-label="Menu"
+            >
+              {mobileMenuOpen ? (
+                // Ícone X quando menu está aberto
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-6 w-6"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M6 18L18 6M6 6l12 12"
+                  />
+                </svg>
+              ) : (
+                // Ícone de hambúrguer quando menu está fechado
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-6 w-6"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M4 6h16M4 12h16M4 18h16"
+                  />
+                </svg>
+              )}
+            </button>
+          </div>
+
+          {/* Links de navegação para desktop */}
+          <div className="hidden md:flex items-center space-x-4">
+            <button
+              onClick={() => scrollToSection("inicio")}
+              className="px-4 py-2 rounded hover:bg-purple-900 transition-colors"
+            >
+              Início
+            </button>
+            <button
+              onClick={() => scrollToSection("estrutura")}
+              className="px-4 py-2 rounded hover:bg-purple-900 transition-colors"
+            >
+              Estrutura
+            </button>
+            <button
               onClick={() => scrollToSection("servicos")}
-              className="px-2 sm:px-4 py-2 rounded hover:bg-purple-900 transition-colors"
-          >
-            Serviços
-          </button>
-          <button
-            onClick={() => scrollToSection("decoracoes")}
-            className="px-2 sm:px-4 py-2 rounded hover:bg-purple-900 transition-colors"
-          >
-            Decorações
-          </button>
-          <button
-            onClick={() => scrollToSection("contato")}
-            className="px-2 sm:px-4 py-2 rounded bg-purple-700 hover:bg-purple-600 transition-colors"
-          >
-            Contato
-          </button>
+              className="px-4 py-2 rounded hover:bg-purple-900 transition-colors"
+            >
+              Serviços
+            </button>
+            <button
+              onClick={() => scrollToSection("decoracoes")}
+              className="px-4 py-2 rounded hover:bg-purple-900 transition-colors"
+            >
+              Decorações
+            </button>
+            <button
+              onClick={() => scrollToSection("contato")}
+              className="px-4 py-2 rounded bg-purple-700 hover:bg-purple-600 transition-colors"
+            >
+              Contato
+            </button>
+          </div>
+        </div>
+
+        {/* Menu mobile - aparece abaixo do cabeçalho em telas pequenas */}
+        <div
+          className={`md:hidden transition-max-height duration-300 ease-in-out overflow-hidden ${
+            mobileMenuOpen ? "max-h-60" : "max-h-0"
+          }`}
+        >
+          <div className="flex flex-col pt-2 pb-3 space-y-1 border-t border-purple-800 mt-4">
+            <button
+              onClick={() => scrollToSection("inicio")}
+              className="px-4 py-3 hover:bg-purple-900 transition-colors rounded-md"
+            >
+              Início
+            </button>
+            <button
+              onClick={() => scrollToSection("estrutura")}
+              className="px-4 py-3 hover:bg-purple-900 transition-colors rounded-md"
+            >
+              Estrutura
+            </button>
+            <button
+              onClick={() => scrollToSection("servicos")}
+              className="px-4 py-3 hover:bg-purple-900 transition-colors rounded-md"
+            >
+              Serviços
+            </button>
+            <button
+              onClick={() => scrollToSection("decoracoes")}
+              className="px-4 py-3 hover:bg-purple-900 transition-colors rounded-md"
+            >
+              Decorações
+            </button>
+            <button
+              onClick={() => scrollToSection("contato")}
+              className="px-4 py-3 bg-purple-700 hover:bg-purple-600 transition-colors rounded-md"
+            >
+              Contato
+            </button>
+          </div>
         </div>
       </div>
     </nav>

@@ -43,10 +43,10 @@ export default function StructureCard({
   const colors = colorVariants[colorClass as keyof typeof colorVariants];
 
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 border border-gray-100 dark:border-gray-700">
+    <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 border border-gray-100 dark:border-gray-700 mx-0 sm:mx-2">
       <div className="flex flex-col md:flex-row">
         {/* Imagem */}
-        <div className="md:w-1/3 aspect-square relative overflow-hidden">
+        <div className="w-full md:w-1/3 aspect-[4/3] md:aspect-square relative overflow-hidden">
           <Image
             src={imageSrc}
             alt={title}
@@ -58,15 +58,15 @@ export default function StructureCard({
         </div>
 
         {/* Conteúdo */}
-        <div className="p-6 md:p-8 md:w-2/3">
+        <div className="p-4 sm:p-6 md:p-8 md:w-2/3">
           <div className="flex items-center mb-4">
-            <div className={`${colors.numberBg} ${colors.numberText} w-10 h-10 rounded-full flex items-center justify-center font-bold mr-3 text-lg`}>
+            <div className={`${colors.numberBg} ${colors.numberText} w-8 h-8 sm:w-10 sm:h-10 rounded-full flex items-center justify-center font-bold mr-3 text-base sm:text-lg`}>
               {number}
             </div>
-            <h3 className="text-2xl font-bold">{title}</h3>
+            <h3 className="text-xl sm:text-2xl font-bold">{title}</h3>
           </div>
 
-          <ul className="space-y-4 text-gray-600 dark:text-gray-300 list-disc pl-5 text-lg">
+          <ul className="space-y-3 sm:space-y-4 text-gray-600 dark:text-gray-300 list-disc pl-5 text-base sm:text-lg">
             {items.map((item, index) => (
               <li key={index} className="py-1">
                 {item}

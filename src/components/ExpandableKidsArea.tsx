@@ -61,7 +61,7 @@ export default function ExpandableKidsArea({
       ref={cardRef}
       className={`bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden hover:shadow-xl 
                 transition-all duration-500 border border-gray-100 dark:border-gray-700
-                ${expanded ? 'flex flex-col' : ''}`}
+                ${expanded ? 'flex flex-col' : ''} mx-0 sm:mx-2`}
     >
       {/* Estrutura geral que muda entre linha e coluna */}
       <div className={`${expanded ? 'flex-col' : 'flex flex-col md:flex-row'}`}>
@@ -70,8 +70,8 @@ export default function ExpandableKidsArea({
         <div
           className={`${
             expanded 
-              ? "w-full aspect-video" 
-              : "w-full md:w-1/3 aspect-square"
+              ? "w-full h-64 sm:aspect-video sm:h-auto" 
+              : "w-full md:w-1/3 aspect-[4/3] md:aspect-square"
           } relative overflow-hidden transition-all duration-500`}
         >
           {!expanded ? (
@@ -172,21 +172,22 @@ export default function ExpandableKidsArea({
         </div>
 
         {/* Conteúdo à direita (modo não expandido) ou abaixo (modo expandido) */}
-        <div className={`p-6 md:p-8 ${expanded ? 'w-full' : 'w-full md:w-2/3'}`}>
+        <div className={`p-4 sm:p-6 md:p-8 ${expanded ? 'w-full' : 'w-full md:w-2/3'}`}>
           <div className="flex items-center mb-4 justify-between flex-wrap">
             <div className="flex items-center">
-              <div className="bg-amber-100 dark:bg-amber-900/40 text-amber-600 dark:text-amber-300 w-10 h-10 rounded-full flex items-center justify-center font-bold mr-3 text-lg">
+              <div className="bg-amber-100 dark:bg-amber-900/40 text-amber-600 dark:text-amber-300 w-8 h-8 sm:w-10 sm:h-10 rounded-full flex items-center justify-center font-bold mr-3 text-base sm:text-lg">
                 {number}
               </div>
-              <h3 className="text-2xl font-bold">{title}</h3>
+              <h3 className="text-xl sm:text-2xl font-bold">{title}</h3>
             </div>
 
             {/* Botão Ver Mais - reposicionado de volta à posição original */}
             <button
               onClick={() => setExpanded(!expanded)}
               className={`
-                px-6 py-3 text-white rounded-xl transition-all duration-300 
-                shadow-lg font-medium text-base flex items-center justify-center mt-2 md:mt-0
+                px-4 sm:px-6 py-2 sm:py-3 text-white rounded-xl transition-all duration-300 
+                shadow-lg font-medium text-sm sm:text-base flex items-center justify-center mt-2 md:mt-0
+                w-full sm:w-auto
                 ${expanded 
                   ? "bg-gradient-to-r from-amber-500 to-amber-400 hover:from-amber-600 hover:to-amber-500" 
                   : "bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600"
@@ -237,7 +238,7 @@ export default function ExpandableKidsArea({
           </div>
 
           {!expanded ? (
-            <ul className="space-y-4 text-gray-600 dark:text-gray-300 list-disc pl-5 text-lg">
+            <ul className="space-y-3 sm:space-y-4 text-gray-600 dark:text-gray-300 list-disc pl-5 text-base sm:text-lg">
               {items.map((item, index) => (
                 <li key={index} className="py-1">
                   {item}

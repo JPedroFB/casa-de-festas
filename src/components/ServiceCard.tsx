@@ -115,15 +115,15 @@ export default function ServiceCard({
     <div
       ref={cardRef}
       className={`bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden hover:shadow-xl
-                transition-all duration-500 border border-gray-100 dark:border-gray-700
-                ${expanded ? "flex flex-col" : ""}`}
+                transition-all duration-500 border border-gray-100 dark:border-gray-700 
+                ${expanded ? "flex flex-col" : ""} mx-0 sm:mx-2`}
     >
       {/* Estrutura geral que muda entre linha e coluna */}
       <div className={`${expanded ? "flex-col" : "flex flex-col md:flex-row"}`}>
         {/* Imagem */}
         <div
           className={`
-            ${expanded ? "w-full h-64" : "md:w-1/3 aspect-square"}
+            ${expanded ? "w-full h-64" : "w-full md:w-1/3 aspect-[4/3] md:aspect-square"}
             relative overflow-hidden transition-all duration-500
           `}
         >
@@ -226,11 +226,11 @@ export default function ServiceCard({
         </div>
 
         {/* Conteúdo */}
-        <div className={`p-6 md:p-8 ${expanded ? "w-full" : "md:w-2/3"}`}>
+        <div className={`p-4 sm:p-6 md:p-8 ${expanded ? "w-full" : "w-full md:w-2/3"}`}>
           <div className="flex items-center mb-4 justify-between flex-wrap">
             <div className="flex items-center">
               {icon}
-              <h3 className="text-2xl font-bold">{title}</h3>
+              <h3 className="text-xl sm:text-2xl font-bold">{title}</h3>
             </div>
 
             {/* Botão */}
@@ -238,10 +238,10 @@ export default function ServiceCard({
               <button
                 onClick={toggleExpand}
                 className={`
-                  px-6 py-3 text-white rounded-xl transition-all duration-300 
-                  shadow-lg font-medium text-base flex items-center justify-center mt-2 md:mt-0
+                  px-4 sm:px-6 py-2 sm:py-3 text-white rounded-xl transition-all duration-300 
+                  shadow-lg font-medium text-sm sm:text-base flex items-center justify-center mt-2 md:mt-0
                   ${colors.button}
-                  transform hover:scale-[1.02] active:scale-[0.98]
+                  transform hover:scale-[1.02] active:scale-[0.98] w-full sm:w-auto
                 `}
               >
                 {expanded ? (
