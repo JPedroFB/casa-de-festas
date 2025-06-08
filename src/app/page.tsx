@@ -97,6 +97,8 @@ export default function Home() {
         "Opções para dietas especiais (vegano, vegetariano, sem glúten, etc.)",
         "Bebidas não-alcoólicas inclusas e opção de open bar personalizado",
       ],
+      buttonText: "Conheça o Cardápio",
+      buttonLink: "#cardapio", // Você pode mudar para uma rota específica do cardápio se quiser
     },
     {
       title: "Equipe Profissional",
@@ -268,6 +270,8 @@ export default function Home() {
                 colorClass={service.colorClass}
                 icon={service.icon}
                 items={service.items}
+                buttonText={service.buttonText}
+                buttonLink={service.buttonLink}
               />
             ))}
           </div>
