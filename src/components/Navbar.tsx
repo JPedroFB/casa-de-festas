@@ -3,6 +3,12 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { Henny_Penny } from "next/font/google";
+
+const hennyPenny = Henny_Penny({
+  weight: "400",
+  subsets: ["latin"],
+});
 
 const Navbar = () => {
   const [scrollPosition, setScrollPosition] = useState(0);
@@ -53,7 +59,7 @@ const Navbar = () => {
         {/* Logo */}
         <Link href="/" className="flex items-center space-x-2">
           <Image src="/next.svg" alt="Casa de Festas" width={40} height={40} className="invert" />
-          <span className="font-bold text-xl hidden sm:inline">Mansão dos Sonhos</span>
+          <span className={`text-xl hidden sm:inline ${hennyPenny.className}`}>Mansão dos Sonhos</span>
         </Link>
 
         {/* Links de navegação */}

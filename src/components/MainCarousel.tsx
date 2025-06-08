@@ -2,6 +2,12 @@
 
 import Image from "next/image";
 import { useState, useEffect } from "react";
+import { Henny_Penny } from "next/font/google";
+
+const hennyPenny = Henny_Penny({
+  weight: "400",
+  subsets: ["latin"],
+});
 
 interface MainCarouselProps {
   images: string[];
@@ -61,7 +67,10 @@ export default function MainCarousel({ images }: MainCarouselProps) {
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
               <div className="absolute bottom-0 left-0 p-8 md:p-12 text-white w-full">
                 <h2 className="text-3xl md:text-5xl font-bold mb-3 transform transition-all duration-700 translate-y-0">
-                  Casa de Festas
+                  Bem-vindo à{" "}
+                  <span className={hennyPenny.className}>
+                    Mansão dos Sonhos
+                  </span>
                 </h2>
                 <p className="text-lg md:text-xl max-w-xl transform transition-all duration-700 translate-y-0">
                   O local perfeito para seu evento inesquecível

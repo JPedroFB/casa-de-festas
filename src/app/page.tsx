@@ -5,6 +5,12 @@ import StructureCard from '../components/StructureCard';
 import ExpandableKidsArea from '../components/ExpandableKidsArea';
 import ServiceCard from '../components/ServiceCard';
 import Navbar from '../components/Navbar';
+import { Henny_Penny } from "next/font/google";
+
+const hennyPenny = Henny_Penny({
+  weight: "400",
+  subsets: ["latin"],
+});
 
 export default function Home() {
   // Array com as imagens do carrossel
@@ -170,8 +176,8 @@ export default function Home() {
         <div className="w-full flex flex-col justify-center items-center py-8 px-4">
           {/* Mensagem de boas-vindas */}
           <div className="w-[90%] max-w-[1920px] mb-10 text-center">
-            <h1 className="text-4xl md:text-6xl font-bold text-white mb-4">
-              Bem-vindo à <span className="bg-clip-text text-transparent bg-gradient-to-r from-amber-300 to-pink-300">Mansão dos Sonhos</span>
+            <h1 className="text-5xl md:text-6xl font-bold text-white mb-4">
+              <span className={`bg-clip-text text-transparent bg-gradient-to-r from-amber-300 to-pink-300 ${hennyPenny.className}`}>Mansão dos Sonhos</span>
             </h1>
             <p className="text-xl text-white/90 max-w-3xl mx-auto">
               O lugar perfeito para transformar momentos especiais em lembranças inesquecíveis
@@ -200,7 +206,7 @@ export default function Home() {
 
         <div className="container mx-auto py-16 px-4 w-[90%] max-w-[1920px]">
           <h2 className="text-4xl font-bold text-center mb-4 bg-clip-text text-transparent bg-gradient-to-r from-indigo-600 to-purple-600">
-            Nossa Estrutura
+            <span className={hennyPenny.className}>Nossa Estrutura</span>
           </h2>
           <p className="text-center text-gray-600 max-w-2xl mx-auto mb-12">
             Tudo o que você precisa para criar momentos inesquecíveis
@@ -246,7 +252,7 @@ export default function Home() {
 
         <div className="container mx-auto py-16 px-4 w-[90%] max-w-[1920px] mb-20">
           <h2 className="text-4xl font-bold text-center mb-4 bg-clip-text text-transparent bg-gradient-to-r from-purple-600 to-indigo-600">
-            Nossos Serviços
+            <span className={hennyPenny.className}>Nossos Serviços</span>
           </h2>
           <p className="text-center text-gray-600 max-w-2xl mx-auto mb-12">
             Oferecemos serviços completos para que seu evento seja perfeito do início ao fim
@@ -271,7 +277,9 @@ export default function Home() {
       {/* Seção de Contato - Adicionando uma seção simples de contato */}
       <section id="contato" className="w-full bg-indigo-950 text-white py-16">
         <div className="container mx-auto px-4 w-[90%] max-w-[1920px]">
-          <h2 className="text-4xl font-bold text-center mb-8">Entre em Contato</h2>
+          <h2 className="text-4xl font-bold text-center mb-8">
+            <span className={hennyPenny.className}>Entre em Contato</span>
+          </h2>
 
           <div className="max-w-lg mx-auto bg-indigo-900/50 p-6 rounded-xl">
             <div className="flex flex-col space-y-4">

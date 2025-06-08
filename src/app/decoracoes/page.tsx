@@ -3,6 +3,12 @@
 import { useState } from "react";
 import Navbar from "../../components/Navbar";
 import DecorationGallery from "../../components/DecorationGallery";
+import { Henny_Penny } from "next/font/google";
+
+const hennyPenny = Henny_Penny({
+  weight: "400",
+  subsets: ["latin"],
+});
 
 export default function Decoracoes() {
   // Dados das decorações
@@ -138,11 +144,8 @@ export default function Decoracoes() {
       {/* Hero Section */}
       <section className="w-full bg-gradient-to-br from-indigo-950 to-purple-900 text-white py-24 md:py-32">
         <div className="container mx-auto px-4 w-[90%] max-w-[1920px] text-center">
-          <h1 className="text-4xl md:text-6xl font-bold mb-6">
-            Decorações
-            <span className="bg-clip-text text-transparent bg-gradient-to-r from-amber-300 to-pink-300 ml-3">
-              de Sonho
-            </span>
+          <h1 className="text-5xl md:text-6xl font-bold text-white mb-4">
+            <span className={`bg-clip-text text-transparent bg-gradient-to-r from-amber-300 to-pink-300 ${hennyPenny.className}`}>Decorações dos Sonhos</span>
           </h1>
           <p className="text-xl max-w-2xl mx-auto mb-8">
             Transformamos qualquer ambiente em um cenário mágico para seu evento
@@ -208,8 +211,6 @@ export default function Decoracoes() {
                 key={theme.id}
                 mainImage={theme.mainImage}
                 supportImages={theme.supportImages}
-                title={theme.title}
-                description={theme.description}
               />
             ))}
           </div>
