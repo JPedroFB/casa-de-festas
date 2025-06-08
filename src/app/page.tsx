@@ -148,65 +148,119 @@ export default function Home() {
   ];
 
   return (
-    <div className="flex flex-col items-center min-h-screen bg-gradient-to-b from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800">
-      {/* Seção do Carrossel */}
-      <MainCarousel images={slideImages} />
+    <div className="flex flex-col items-center min-h-screen overflow-x-hidden">
 
-      {/* Seção Estrutura da Casa de Festas */}
-      <div className="w-[90%] max-w-[1920px] mb-20">
-        <h2 className="text-4xl font-bold text-center mb-4 bg-clip-text text-transparent bg-gradient-to-r from-indigo-600 to-purple-600 dark:from-indigo-300 dark:to-purple-300">
-          Nossa Estrutura
-        </h2>
-        <p className="text-center text-gray-600 dark:text-gray-300 max-w-2xl mx-auto mb-12">
-          Tudo o que você precisa para criar momentos inesquecíveis
-        </p>
-
-        <div className="space-y-8">
-          {/* Cards da estrutura */}
-          {structureItems.map((item) => (
-            <StructureCard
-              key={item.number}
-              number={item.number}
-              title={item.title}
-              imageSrc={item.imageSrc}
-              colorClass={item.colorClass}
-              items={item.items}
-            />
-          ))}
-
-          {/* Área das crianças - expandível */}
-          <ExpandableKidsArea
-            title={kidsAreaData.title}
-            number={kidsAreaData.number}
-            imageSrc={kidsAreaData.imageSrc}
-            items={kidsAreaData.items}
-          />
+      {/* Seção do Carrossel - Fundo em azul escuro/roxo */}
+      <section className="w-full bg-gradient-to-br from-indigo-950 to-purple-900 relative pb-16">
+        {/* Forma em zigue-zague no final da seção */}
+        <div className="absolute bottom-0 left-0 w-full h-20 overflow-hidden">
+          <svg
+            viewBox="0 0 1200 120"
+            preserveAspectRatio="none"
+            className="absolute bottom-0 left-0 w-full h-full text-pink-100"
+            fill="currentColor"
+          >
+            <path d="M0,0 L120,40 L240,0 L360,40 L480,0 L600,40 L720,0 L840,40 L960,0 L1080,40 L1200,0 L1200,120 L0,120 Z"></path>
+          </svg>
         </div>
-      </div>
 
-      {/* Seção Serviços */}
-      <div className="w-[90%] max-w-[1920px] mb-20">
-        <h2 className="text-4xl font-bold text-center mb-4 bg-clip-text text-transparent bg-gradient-to-r from-purple-600 to-indigo-600 dark:from-purple-300 dark:to-indigo-300">
-          Nossos Serviços
-        </h2>
-        <p className="text-center text-gray-600 dark:text-gray-300 max-w-2xl mx-auto mb-12">
-          Oferecemos serviços completos para que seu evento seja perfeito do início ao fim
-        </p>
-
-        <div className="space-y-8">
-          {/* Cards de serviços */}
-          {services.map((service, index) => (
-            <ServiceCard
-              key={index}
-              title={service.title}
-              imageSrc={service.imageSrc}
-              colorClass={service.colorClass}
-              icon={service.icon}
-              items={service.items}
-            />
-          ))}
+        <div className="w-full flex justify-center items-center py-16 px-4">
+          <div className="w-[90%] max-w-[1920px]">
+            <MainCarousel images={slideImages} />
+          </div>
         </div>
-      </div>
+      </section>
+
+      {/* Seção da Estrutura - Fundo em rosa claro */}
+      <section className="w-full bg-pink-100 relative pb-16">
+        {/* Forma em zigue-zague no final da seção */}
+        <div className="absolute bottom-0 left-0 w-full h-20 overflow-hidden">
+          <svg
+            viewBox="0 0 1200 120"
+            preserveAspectRatio="none"
+            className="absolute bottom-0 left-0 w-full h-full text-amber-50"
+            fill="currentColor"
+          >
+            <path d="M0,40 L100,0 L200,60 L300,20 L400,80 L500,10 L600,70 L700,30 L800,90 L900,20 L1000,60 L1100,10 L1200,50 L1200,120 L0,120 Z"></path>
+          </svg>
+        </div>
+
+        <div className="container mx-auto py-16 px-4 w-[90%] max-w-[1920px]">
+          <h2 className="text-4xl font-bold text-center mb-4 bg-clip-text text-transparent bg-gradient-to-r from-indigo-600 to-purple-600">
+            Nossa Estrutura
+          </h2>
+          <p className="text-center text-gray-600 max-w-2xl mx-auto mb-12">
+            Tudo o que você precisa para criar momentos inesquecíveis
+          </p>
+
+          <div className="space-y-8">
+            {/* Cards da estrutura */}
+            {structureItems.map((item) => (
+              <StructureCard
+                key={item.number}
+                number={item.number}
+                title={item.title}
+                imageSrc={item.imageSrc}
+                colorClass={item.colorClass}
+                items={item.items}
+              />
+            ))}
+
+            {/* Área das crianças - expandível */}
+            <ExpandableKidsArea
+              title={kidsAreaData.title}
+              number={kidsAreaData.number}
+              imageSrc={kidsAreaData.imageSrc}
+              items={kidsAreaData.items}
+            />
+          </div>
+        </div>
+      </section>
+
+      {/* Seção dos Serviços - Fundo em âmbar claro */}
+      <section className="w-full bg-amber-50 relative">
+        {/* Forma em zigue-zague no final da seção - mais irregular e divertida */}
+        <div className="absolute bottom-0 left-0 w-full h-20 overflow-hidden">
+          <svg
+            viewBox="0 0 1200 120"
+            preserveAspectRatio="none"
+            className="absolute bottom-0 left-0 w-full h-full text-indigo-950"
+            fill="currentColor"
+          >
+            <path d="M0,40 L50,10 L100,50 L150,20 L200,70 L250,30 L300,80 L350,0 L400,60 L450,10 L500,90 L550,20 L600,70 L650,30 L700,80 L750,10 L800,50 L850,30 L900,60 L950,0 L1000,50 L1050,20 L1100,80 L1150,40 L1200,60 L1200,120 L0,120 Z"></path>
+          </svg>
+        </div>
+
+        <div className="container mx-auto py-16 px-4 w-[90%] max-w-[1920px] mb-20">
+          <h2 className="text-4xl font-bold text-center mb-4 bg-clip-text text-transparent bg-gradient-to-r from-purple-600 to-indigo-600">
+            Nossos Serviços
+          </h2>
+          <p className="text-center text-gray-600 max-w-2xl mx-auto mb-12">
+            Oferecemos serviços completos para que seu evento seja perfeito do início ao fim
+          </p>
+
+          <div className="space-y-8">
+            {/* Cards de serviços */}
+            {services.map((service, index) => (
+              <ServiceCard
+                key={index}
+                title={service.title}
+                imageSrc={service.imageSrc}
+                colorClass={service.colorClass}
+                icon={service.icon}
+                items={service.items}
+              />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Footer - Fundo em azul escuro/roxo */}
+      <footer className="w-full bg-indigo-950 text-white py-10">
+        <div className="container mx-auto text-center">
+          <p>&copy; {new Date().getFullYear()} Casa de Festas - Todos os direitos reservados</p>
+        </div>
+      </footer>
     </div>
   );
 }

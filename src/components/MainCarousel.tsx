@@ -37,7 +37,7 @@ export default function MainCarousel({ images }: MainCarouselProps) {
   };
 
   return (
-    <div className="relative w-[90%] aspect-[16/9] max-w-[1920px] my-12">
+    <div className="relative w-[100%] aspect-[16/9] max-w-[1920px] my-12">
       {/* Carrossel com cantos arredondados */}
       <div className="relative w-full h-full rounded-3xl overflow-hidden shadow-2xl bg-gradient-to-r from-indigo-500/10 to-purple-500/10">
         {images.map((src, index) => (
