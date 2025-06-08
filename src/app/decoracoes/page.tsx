@@ -204,7 +204,7 @@ export default function Decoracoes() {
 
       {/* Seção de galerias */}
       <section className="bg-amber-50 py-16">
-        <div className="container mx-auto px-4 w-[90%] max-w-[1920px]">
+        <div className="container mx-auto px-2.5 sm:px-4 w-full sm:w-[90%] max-w-[1920px]">
           <div className="grid grid-cols-1 gap-12">
             {filteredDecorations.map((theme) => (
               <DecorationGallery
