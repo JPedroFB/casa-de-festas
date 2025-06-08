@@ -75,12 +75,12 @@ const Navbar = () => {
           >
             Estrutura
           </button>
-          <Link
-            href="/decoracoes"
+          <button
+            onClick={() => scrollToSection("decoracoes")}
             className="px-2 sm:px-4 py-2 rounded hover:bg-purple-900 transition-colors"
           >
             Decorações
-          </Link>
+          </button>
           <button
             onClick={() => scrollToSection("servicos")}
             className="px-2 sm:px-4 py-2 rounded hover:bg-purple-900 transition-colors"
