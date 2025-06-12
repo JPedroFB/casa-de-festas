@@ -73,7 +73,7 @@ export default function MainCarousel({ images }: MainCarouselProps) {
                   </span>
                 </h2>
                 <p className="text-lg md:text-xl max-w-xl transform transition-all duration-700 translate-y-0">
-                  O local perfeito para seu evento inesquecível
+                  O espaço perfeito para sua comemoração sem preocupações
                 </p>
               </div>
             </div>

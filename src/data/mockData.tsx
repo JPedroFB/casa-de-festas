@@ -37,10 +37,10 @@ export const structureItems: StructureItem[] = [
     imageSrc: "/images/mesas.png",
     colorClass: "blue",
     items: [
-      "Espaço amplo e bem iluminado proporcionando ambiente acolhedor",
-      "Estacionamento seguro com capacidade para 50 veículos",
-      "Decoração personalizada de acordo com o tema do evento",
-      "Sistema de segurança com câmeras e equipe treinada",
+      "Totalmente reformada com novos ambientes",
+      "Circuito interno de TV para monitoramento",
+      "Saída de emergência e acessibilidade para deficientes físicos",
+      "Estacionamento com 3 vagas em frente à casa",
     ],
   },
   {
@@ -49,10 +49,10 @@ export const structureItems: StructureItem[] = [
     imageSrc: "/images/mesas2.png",
     colorClass: "pink",
     items: [
-      "Equipe profissional para recepcionar e orientar os convidados",
-      "Espaço para personalização com a temática da sua festa",
-      "Área de espera confortável para os convidados",
-      "Sistema moderno de confirmação e registro de presentes",
+      "Recepção e sala de parabéns com palco para animação",
+      "Telão, mesa de chá e área lounge",
+      "Imenso salão plano com jogos infantis e adultos",
+      "Mesas e cadeiras confortáveis para até 200 pessoas",
     ],
   },
   {
@@ -61,10 +61,10 @@ export const structureItems: StructureItem[] = [
     imageSrc: "/images/mesas.png",
     colorClass: "emerald",
     items: [
-      "Capacidade total para até 200 convidados sentados",
-      "Mesas redondas para 8 pessoas cada, garantindo maior interação",
-      "Diferentes arranjos disponíveis para personalização",
-      "Amplo espaço entre mesas para fácil circulação dos convidados e equipe",
+      "Salão climatizado com mesas e cadeiras para até 200 pessoas",
+      "Mesas bem distribuídas, garantindo interação e conforto",
+      "Arranjos personalizáveis conforme o tema da festa",
+      "Área Baby espaçosa e próxima ao salão principal",
     ],
   },
 ];
@@ -74,10 +74,10 @@ export const kidsAreaData: KidsAreaData = {
   title: "Área das Crianças",
   imageSrc: "/images/brinquedos.png",
   items: [
-    "Espaço kids completo com brinquedos e jogos para todas as idades",
-    "Monitores especializados garantindo a diversão e segurança",
-    "Área visível aos pais para maior tranquilidade",
-    "Decoração temática e atividades personalizadas",
+    "Berçário e fraldário equipados para os pequenos",
+    "Sala de TV e descanso integrada ao espaço",
+    "Área Baby climatizada e monitorada por nossa equipe",
+    "Brinquedos variados e atividades personalizadas",
   ],
 };
 
@@ -103,10 +103,10 @@ export const services: Service[] = [
       </svg>
     ),
     items: [
-      "Menu personalizado com opções para todos os gostos e preferências",
-      "Chefs especializados em gastronomia nacional e internacional",
-      "Opções para dietas especiais (vegano, vegetariano, sem glúten, etc.)",
-      "Bebidas não-alcoólicas inclusas e opção de open bar personalizado",
+      "Enorme variedade de salgados, doces e lanches infantis",
+      "Bebidas variadas para todos os gostos",
+      "Menu personalizado preparado por nossa cozinheira",
+      "Estrutura de cozinha com fritadeira e suporte completo",
     ],
     buttonText: "Conheça o Cardápio",
     buttonLink: "#cardapio",
@@ -132,10 +132,10 @@ export const services: Service[] = [
       </svg>
     ),
     items: [
-      "Garçons treinados e uniformizados para atendimento de primeira classe",
-      "Coordenador de eventos dedicado para cuidar de todos os detalhes",
-      "Gerente de festas que acompanha toda a execução do evento",
-      "Equipe de limpeza e manutenção durante todo o evento",
+      "Recepcionista e monitores sempre atentos aos convidados",
+      "Garçons e copeiro garantindo o conforto de todos",
+      "Animadores, DJ's e equipe de serviços gerais",
+      "Decoração temática com bolas e fornecimento de convites",
     ],
   },
   {
@@ -159,10 +159,10 @@ export const services: Service[] = [
       </svg>
     ),
     items: [
-      "Equipe de segurança profissional e discreta durante todo o evento",
-      "Sistema de câmeras de monitoramento em todas as áreas",
-      "Controle de acesso na entrada com lista de convidados",
-      "Protocolos de emergência e primeiros socorros disponíveis",
+      "Equipe de segurança presente em toda a festa",
+      "Circuito interno de TV com monitoramento contínuo",
+      "Controle de acesso na entrada e acompanhamento dos convidados",
+      "Protocolos de emergência e primeiros socorros sempre disponíveis",
     ],
   },
 ];

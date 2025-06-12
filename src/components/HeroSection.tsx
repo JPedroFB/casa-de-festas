@@ -32,7 +32,7 @@ export default function HeroSection({ images }: HeroSectionProps) {
             <span className={`bg-clip-text text-transparent bg-gradient-to-r from-amber-300 to-pink-300 ${hennyPenny.className}`}>Mansão dos Sonhos</span>
           </h1>
           <p className="text-xl text-white/90 max-w-3xl mx-auto">
-            O lugar perfeito para transformar momentos especiais em lembranças inesquecíveis
+            Para as crianças, aniversários são momentos inesquecíveis. Somos a maior casa de festas infantis da Zona Norte, com mais de 800 m² de diversão no Grajaú.
           </p>
         </div>
 
