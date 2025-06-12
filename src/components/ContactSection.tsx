@@ -20,7 +20,7 @@ export default function ContactSection() {
             <h3 className="text-2xl font-semibold">Fale Conosco</h3>
             <div className="flex flex-col space-y-4">
               <a
-                href="https://wa.me/5511999999999"
+                href="https://wa.me/5521964492447"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center space-x-3 px-4 py-3 bg-green-600 hover:bg-green-700 rounded-lg transition-colors"
@@ -29,7 +29,22 @@ export default function ContactSection() {
                   <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
                   <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm0 22.5c-1.725 0-3.35-.405-4.8-1.125l-5.25 1.35 1.35-5.25a10.452 10.452 0 01-1.125-4.8c0-5.79 4.71-10.5 10.5-10.5s10.5 4.71 10.5 10.5-4.71 10.5-10.5 10.5z" fillRule="nonzero"/>
                 </svg>
-                <span>WhatsApp: (11) 99999-9999</span>
+                <span>WhatsApp: (21) 96449-2447</span>
+              </a>
+
+              <a
+                href="tel:+552135590805"
+                className="flex items-center space-x-3 px-4 py-3 bg-indigo-700 hover:bg-indigo-800 rounded-lg transition-colors"
+              >
+                <svg
+                  className="w-6 h-6"
+                  fill="currentColor"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path d="M3.654 1.328a1 1 0 00-1.197.52l-1.5 3a1 1 0 00.23 1.173l3 3a1 1 0 001.173.23l2.2-.916a.25.25 0 01.257.063l2.472 2.472a.25.25 0 01.063.257l-.916 2.2a1 1 0 00.23 1.173l3 3a1 1 0 001.173.23l3-1.5a1 1 0 00.52-1.197l-1.04-4.158a1 1 0 00-.262-.463L8.49 1.59a1 1 0 00-.463-.262L3.87.288a1 1 0 00-.216-.047z" />
+                </svg>
+                <span>Telefone: (21) 3559-0805</span>
               </a>
 
               <a
@@ -71,14 +86,13 @@ export default function ContactSection() {
           <div className="bg-indigo-900/50 p-6 rounded-xl">
             <h3 className="text-2xl font-semibold mb-4">Nossa Localização</h3>
             <address className="not-italic mb-6">
-              <p className="text-lg mb-1">Avenida das Celebrações, 1000</p>
-              <p className="text-lg mb-1">Jardim Flores - São Paulo/SP</p>
-              <p className="text-lg mb-1">CEP: 00000-000</p>
+              <p className="text-lg mb-1">Rua Itabaiana, 244</p>
+              <p className="text-lg mb-1">Grajaú - Rio de Janeiro/RJ</p>
             </address>
 
             <div className="w-full h-64 rounded-lg overflow-hidden">
               <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3657.1975730756854!2d-46.65879282378059!3d-23.564228860680143!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ce59c8da0aa315%3A0xd59f9431f2c9776a!2sAv.%20Paulista%20-%20Bela%20Vista%2C%20S%C3%A3o%20Paulo%20-%20SP!5e0!3m2!1sen!2sbr!4v1686153292527!5m2!1sen!2sbr"
+                src="https://www.google.com/maps?q=Rua+Itabaiana+244,+Graja%C3%BA+RJ&output=embed"
                 className="w-full h-full border-0"
                 allowFullScreen={true}
                 loading="lazy"
