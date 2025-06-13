@@ -220,13 +220,13 @@ const DecorationGallery = ({
 
         <div
           ref={scrollContainerRef}
-          className="relative overflow-x-auto pb-2 sm:pb-4 scroll-smooth hide-scrollbar"
+          className="relative overflow-x-auto pb-2 sm:pb-4 scroll-smooth hide-scrollbar h-[280px] sm:h-[400px] md:h-[520px]"
         >
-          <div className="flex gap-2 sm:gap-4 w-max">
+          <div className="flex gap-2 sm:gap-4 w-max h-full">
             {/* Imagem principal - tamanho reduzido em mobile */}
             <div className="flex flex-col">
               <button
-                className={`relative w-[280px] h-[280px] sm:w-[400px] sm:h-[400px] md:w-[520px] md:h-[520px] rounded-xl overflow-hidden cursor-zoom-in group
+                className={`relative w-[280px] h-full sm:w-[400px] sm:h-full md:w-[520px] md:h-full rounded-xl overflow-hidden cursor-zoom-in group
                   ${mainImage.src === selectedImage ? 'ring-4 ring-purple-500' : 'ring-1 ring-gray-200 dark:ring-gray-700'}`}
                 onClick={() => openModal(mainImage.src)}
                 onKeyDown={(e) => handleSelectImage(mainImage.src, e)}
@@ -253,11 +253,11 @@ const DecorationGallery = ({
             </div>
 
             {/* Grid de imagens de suporte organizadas em colunas - simplificado para mobile */}
-            <div className="flex flex-row sm:flex-col gap-2 sm:gap-4">
+            <div className="flex flex-row sm:flex-col gap-2 sm:gap-4 h-full">
               {supportImages.slice(0, 3).map((img) => (
                 <button
                   key={img.src}
-                  className={`relative w-[180px] h-[180px] sm:w-[260px] sm:h-[160px] rounded-xl overflow-hidden cursor-zoom-in group
+                  className={`relative w-[180px] h-full sm:w-[260px] sm:h-full rounded-xl overflow-hidden cursor-zoom-in group
                     ${img.src === selectedImage ? 'ring-4 ring-purple-500' : 'ring-1 ring-gray-200 dark:ring-gray-700'}`}
                   onClick={() => openModal(img.src)}
                   onKeyDown={(e) => handleSelectImage(img.src, e)}
@@ -287,7 +287,7 @@ const DecorationGallery = ({
             {supportImages.slice(3).map((img) => (
               <button
                 key={img.src}
-                className={`relative w-[180px] h-[180px] sm:w-[260px] sm:h-[160px] rounded-xl overflow-hidden cursor-zoom-in group
+                className={`relative w-[180px] h-full sm:w-[260px] sm:h-full rounded-xl overflow-hidden cursor-zoom-in group
                   ${img.src === selectedImage ? 'ring-4 ring-purple-500' : 'ring-1 ring-gray-200 dark:ring-gray-700'}`}
                 onClick={() => openModal(img.src)}
                 onKeyDown={(e) => handleSelectImage(img.src, e)}
