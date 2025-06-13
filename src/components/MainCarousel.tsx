@@ -43,9 +43,9 @@ export default function MainCarousel({ slides }: MainCarouselProps) {
   };
 
   return (
-    <div className="relative w-[100%] aspect-[16/9] max-w-[1920px] my-12">
+    <div className="w-[100%] max-w-[1920px] my-12">
       {/* Carrossel com cantos arredondados */}
-      <div className="relative w-full h-full rounded-3xl overflow-hidden shadow-2xl bg-gradient-to-r from-indigo-500/10 to-purple-500/10">
+      <div className="relative w-full aspect-[16/9] rounded-3xl overflow-hidden shadow-2xl bg-gradient-to-r from-indigo-500/10 to-purple-500/10">
         {slides.map((slide, index) => (
           <div
             key={index}
@@ -121,8 +121,29 @@ export default function MainCarousel({ slides }: MainCarouselProps) {
         </button>
       </div>
 
-      {/* Navegação em dispositivos móveis */}
-      <div className="flex md:hidden justify-between mt-4">
+      {/* Indicadores de slide */}
+      <div className="hidden md:flex absolute bottom-6 left-1/2 transform -translate-x-1/2 space-x-2">
+        {slides.map((_, index) => (
+          <button
+            key={index}
+            onClick={() => goToSlide(index)}
+            className={`w-3 h-3 rounded-full transition-all duration-300 ${
+              currentSlide === index
+                ? "bg-white w-8"
+                : "bg-white/40 hover:bg-white/60"
+            }`}
+            aria-label={`Ir para slide ${index + 1}`}
+          />
+        ))}
+      </div>
+      {/* Texto abaixo do carrossel para dispositivos móveis */}
+      <div className="md:hidden text-center text-white mt-6 px-6">
+        <h2 className={`text-2xl font-bold mb-2 ${hennyPenny.className}`}>{slides[currentSlide].title}</h2>
+        <p className="text-base">{slides[currentSlide].description}</p>
+      </div>
+
+      {/* Navegação e indicador em dispositivos móveis */}
+      <div className="flex md:hidden justify-between items-center mt-4">
         <button
           onClick={prevSlide}
           className="bg-white/20 backdrop-blur-md text-white rounded-full w-10 h-10 flex items-center justify-center shadow-lg hover:bg-white/30 transition-all duration-300 border border-white/30"
@@ -143,6 +164,21 @@ export default function MainCarousel({ slides }: MainCarouselProps) {
           </svg>
         </button>
 
+        <div className="flex space-x-2">
+          {slides.map((_, index) => (
+            <button
+              key={index}
+              onClick={() => goToSlide(index)}
+              className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                currentSlide === index
+                  ? "bg-white w-8"
+                  : "bg-white/40 hover:bg-white/60"
+              }`}
+              aria-label={`Ir para slide ${index + 1}`}
+            />
+          ))}
+        </div>
+
         <button
           onClick={nextSlide}
           className="bg-white/20 backdrop-blur-md text-white rounded-full w-10 h-10 flex items-center justify-center shadow-lg hover:bg-white/30 transition-all duration-300 border border-white/30"
@@ -162,28 +198,6 @@ export default function MainCarousel({ slides }: MainCarouselProps) {
             <path d="M9 18l6-6-6-6" />
           </svg>
         </button>
-      </div>
-
-      {/* Indicadores de slide */}
-      <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 flex space-x-2">
-        {slides.map((_, index) => (
-          <button
-            key={index}
-            onClick={() => goToSlide(index)}
-            className={`w-3 h-3 rounded-full transition-all duration-300 ${
-              currentSlide === index
-                ? "bg-white w-8"
-                : "bg-white/40 hover:bg-white/60"
-            }`}
-            aria-label={`Ir para slide ${index + 1}`}
-          />
-        ))}
-      </div>
-
-      {/* Texto abaixo do carrossel para dispositivos móveis */}
-      <div className="md:hidden text-center text-white mt-6 px-6">
-        <h2 className={`text-2xl font-bold mb-2 ${hennyPenny.className}`}>{slides[currentSlide].title}</h2>
-        <p className="text-base">{slides[currentSlide].description}</p>
       </div>
     </div>
   );
