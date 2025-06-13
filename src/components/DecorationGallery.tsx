@@ -341,7 +341,7 @@ const DecorationGallery = ({
           >
             {/* Botão de fechar */}
             <button
-              className="absolute top-4 right-4 bg-black/60 text-white rounded-full p-2"
+              className="absolute top-4 right-4 bg-black/60 text-white rounded-full p-2 z-10"
               onClick={closeModal}
               aria-label="Fechar visualização"
             >
