@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { useState, useEffect } from "react";
 import { Henny_Penny } from "next/font/google";
+import type { Slide } from "@/data/mockData";
 
 const hennyPenny = Henny_Penny({
   weight: "400",
@@ -10,10 +11,9 @@ const hennyPenny = Henny_Penny({
 });
 
 interface MainCarouselProps {
-  images: string[];
+  slides: Slide[];
 }
-
-export default function MainCarousel({ images }: MainCarouselProps) {
+export default function MainCarousel({ slides }: MainCarouselProps) {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
 
@@ -29,11 +29,11 @@ export default function MainCarousel({ images }: MainCarouselProps) {
   }, [currentSlide, isAutoPlaying]);
 
   const nextSlide = () => {
-    setCurrentSlide((prev) => (prev === images.length - 1 ? 0 : prev + 1));
+    setCurrentSlide((prev) => (prev === slides.length - 1 ? 0 : prev + 1));
   };
 
   const prevSlide = () => {
-    setCurrentSlide((prev) => (prev === 0 ? images.length - 1 : prev - 1));
+    setCurrentSlide((prev) => (prev === 0 ? slides.length - 1 : prev - 1));
   };
 
   const goToSlide = (index: number) => {
@@ -46,7 +46,7 @@ export default function MainCarousel({ images }: MainCarouselProps) {
     <div className="relative w-[100%] aspect-[16/9] max-w-[1920px] my-12">
       {/* Carrossel com cantos arredondados */}
       <div className="relative w-full h-full rounded-3xl overflow-hidden shadow-2xl bg-gradient-to-r from-indigo-500/10 to-purple-500/10">
-        {images.map((src, index) => (
+        {slides.map((slide, index) => (
           <div
             key={index}
             className={`absolute w-full h-full transition-all duration-700 ${
@@ -57,7 +57,7 @@ export default function MainCarousel({ images }: MainCarouselProps) {
           >
             <div className="relative w-full h-full">
               <Image
-                src={src}
+                src={slide.src}
                 alt={`Slide ${index + 1}`}
                 fill
                 style={{ objectFit: "cover" }}
@@ -66,14 +66,11 @@ export default function MainCarousel({ images }: MainCarouselProps) {
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
               <div className="absolute bottom-0 left-0 p-8 md:p-12 text-white w-full hidden md:block">
-                <h2 className="text-3xl md:text-5xl font-bold mb-3 transform transition-all duration-700 translate-y-0">
-                  Bem-vindo à{" "}
-                  <span className={hennyPenny.className}>
-                    Mansão dos Sonhos
-                  </span>
+                <h2 className={`text-3xl md:text-5xl font-bold mb-3 transform transition-all duration-700 translate-y-0 ${hennyPenny.className}`}>
+                  {slide.title}
                 </h2>
                 <p className="text-lg md:text-xl max-w-xl transform transition-all duration-700 translate-y-0">
-                  O espaço perfeito para sua comemoração sem preocupações
+                  {slide.description}
                 </p>
               </div>
             </div>
@@ -169,7 +166,7 @@ export default function MainCarousel({ images }: MainCarouselProps) {
 
       {/* Indicadores de slide */}
       <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 flex space-x-2">
-        {images.map((_, index) => (
+        {slides.map((_, index) => (
           <button
             key={index}
             onClick={() => goToSlide(index)}
@@ -181,6 +178,12 @@ export default function MainCarousel({ images }: MainCarouselProps) {
             aria-label={`Ir para slide ${index + 1}`}
           />
         ))}
+      </div>
+
+      {/* Texto abaixo do carrossel para dispositivos móveis */}
+      <div className="md:hidden text-center text-white mt-6 px-6">
+        <h2 className={`text-2xl font-bold mb-2 ${hennyPenny.className}`}>{slides[currentSlide].title}</h2>
+        <p className="text-base">{slides[currentSlide].description}</p>
       </div>
     </div>
   );

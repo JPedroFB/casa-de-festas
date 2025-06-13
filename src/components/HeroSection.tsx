@@ -2,9 +2,10 @@
 
 import MainCarousel from "./MainCarousel";
 import { Henny_Penny } from "next/font/google";
+import type { Slide } from "@/data/mockData";
 
 interface HeroSectionProps {
-  images: string[];
+  slides: Slide[];
 }
 
 const hennyPenny = Henny_Penny({
@@ -12,7 +13,7 @@ const hennyPenny = Henny_Penny({
   subsets: ["latin"],
 });
 
-export default function HeroSection({ images }: HeroSectionProps) {
+export default function HeroSection({ slides }: HeroSectionProps) {
   return (
     <section id="inicio" className="w-full bg-gradient-to-br from-indigo-950 to-purple-900 relative pb-16 pt-24">
       <div className="absolute bottom-0 left-0 w-full h-20 overflow-hidden">
@@ -37,7 +38,7 @@ export default function HeroSection({ images }: HeroSectionProps) {
         </div>
 
         <div className="w-full sm:w-[90%] max-w-[1920px] px-0 sm:px-0">
-          <MainCarousel images={images} />
+          <MainCarousel slides={slides} />
         </div>
       </div>
     </section>
