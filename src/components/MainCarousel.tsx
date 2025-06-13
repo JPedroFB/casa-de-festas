@@ -65,7 +65,7 @@ export default function MainCarousel({ images }: MainCarouselProps) {
                 priority={index === 0}
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-              <div className="absolute bottom-0 left-0 p-8 md:p-12 text-white w-full">
+              <div className="absolute bottom-0 left-0 p-8 md:p-12 text-white w-full hidden md:block">
                 <h2 className="text-3xl md:text-5xl font-bold mb-3 transform transition-all duration-700 translate-y-0">
                   Bem-vindo à{" "}
                   <span className={hennyPenny.className}>
@@ -82,7 +82,50 @@ export default function MainCarousel({ images }: MainCarouselProps) {
       </div>
 
       {/* Botões de navegação modernizados */}
-      <div className="flex justify-between absolute inset-x-0 top-1/2 -translate-y-1/2 px-4">
+      <div className="hidden md:flex justify-between absolute inset-x-0 top-1/2 -translate-y-1/2 px-4">
+        <button
+          onClick={prevSlide}
+          className="bg-white/20 backdrop-blur-md text-white rounded-full w-10 h-10 flex items-center justify-center shadow-lg hover:bg-white/30 transition-all duration-300 border border-white/30"
+          aria-label="Slide anterior"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          >
+            <path d="M15 18l-6-6 6-6" />
+          </svg>
+        </button>
+
+        <button
+          onClick={nextSlide}
+          className="bg-white/20 backdrop-blur-md text-white rounded-full w-10 h-10 flex items-center justify-center shadow-lg hover:bg-white/30 transition-all duration-300 border border-white/30"
+          aria-label="Próximo slide"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          >
+            <path d="M9 18l6-6-6-6" />
+          </svg>
+        </button>
+      </div>
+
+      {/* Navegação em dispositivos móveis */}
+      <div className="flex md:hidden justify-between mt-4">
         <button
           onClick={prevSlide}
           className="bg-white/20 backdrop-blur-md text-white rounded-full w-10 h-10 flex items-center justify-center shadow-lg hover:bg-white/30 transition-all duration-300 border border-white/30"
