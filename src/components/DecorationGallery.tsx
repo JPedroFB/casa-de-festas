@@ -41,6 +41,8 @@ const DecorationGallery = ({
   const [activeIndex, setActiveIndex] = useState(0);
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const [showScrollIndicators, setShowScrollIndicators] = useState(true);
+  const [touchStartX, setTouchStartX] = useState<number | null>(null);
+  const [touchEndX, setTouchEndX] = useState<number | null>(null);
 
   // Criar array com todas as imagens para facilitar a navegação
   const allImages = [mainImage, ...supportImages];
@@ -84,6 +86,27 @@ const DecorationGallery = ({
     if (e.key === 'Escape') closeModal();
     if (e.key === 'ArrowRight') nextImage();
     if (e.key === 'ArrowLeft') prevImage();
+  };
+
+  // Navegação por gesto de arrastar no mobile
+  const handleTouchStart = (e: React.TouchEvent) => {
+    setTouchStartX(e.touches[0].clientX);
+  };
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    setTouchEndX(e.touches[0].clientX);
+  };
+
+  const handleTouchEnd = () => {
+    if (touchStartX !== null && touchEndX !== null) {
+      if (touchStartX - touchEndX > 50) {
+        nextImage();
+      } else if (touchEndX - touchStartX > 50) {
+        prevImage();
+      }
+    }
+    setTouchStartX(null);
+    setTouchEndX(null);
   };
 
   // Funções para rolagem horizontal com botões
@@ -299,10 +322,10 @@ const DecorationGallery = ({
         </div>
       </div>
 
-      {/* Modal modernizado para visualização expandida da imagem */}
+      {/* Modal simplificado para visualização */}
       {showModal && (
         <div
-          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-white/10 dark:bg-black/10 backdrop-blur-xl"
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/80"
           onClick={closeModal}
           onKeyDown={handleKeyDown}
           tabIndex={-1}
@@ -310,89 +333,69 @@ const DecorationGallery = ({
           aria-modal="true"
         >
           <div
-            className="relative w-full max-w-5xl rounded-2xl overflow-hidden shadow-2xl bg-white dark:bg-gray-900 transition-all duration-300 animate-fadeIn"
-            onClick={e => e.stopPropagation()}
+            className="relative w-full h-full max-w-none"
+            onClick={(e) => e.stopPropagation()}
+            onTouchStart={handleTouchStart}
+            onTouchMove={handleTouchMove}
+            onTouchEnd={handleTouchEnd}
           >
-            {/* Cabeçalho do modal */}
-            <div className="absolute top-0 inset-x-0 flex justify-between items-center p-4 z-10 bg-gradient-to-b from-black/50 to-transparent">
-              <p className="text-white font-medium truncate max-w-[70%]">
-                {allImages[activeIndex].alt || "Imagem em destaque"}
-              </p>
-              <button
-                className="bg-white/20 backdrop-blur-sm text-white rounded-full p-2 hover:bg-white/30 transition-colors"
-                onClick={closeModal}
-                aria-label="Fechar visualização"
-              >
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-5 h-5">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
-                </svg>
-              </button>
-            </div>
+            {/* Botão de fechar */}
+            <button
+              className="absolute top-4 right-4 bg-black/60 text-white rounded-full p-2"
+              onClick={closeModal}
+              aria-label="Fechar visualização"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-6 h-6">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
 
-            {/* Área da imagem */}
-            <div className="w-full h-[calc(100vh-150px)] max-h-[800px] bg-gray-100 dark:bg-gray-800 relative">
+            {/* Imagem central */}
+            <div className="w-full h-full flex items-center justify-center">
               <Image
                 src={allImages[activeIndex].src}
-                alt={allImages[activeIndex].alt || "Imagem ampliada"}
+                alt={allImages[activeIndex].alt || 'Imagem ampliada'}
                 fill
-                style={{ objectFit: "contain" }}
-                sizes="(max-width: 1280px) 100vw, 1280px"
-                className="p-4"
+                style={{ objectFit: 'contain' }}
+                sizes="100vw"
                 priority
               />
             </div>
 
-            {/* Navegação e contagem */}
-            <div className="p-4 flex justify-between items-center bg-white dark:bg-gray-900">
-              <button
-                className="flex items-center gap-2 px-4 py-2 bg-gray-100 dark:bg-gray-800 rounded-lg hover:bg-purple-100 dark:hover:bg-purple-900 transition-colors disabled:opacity-50"
-                onClick={prevImage}
-                disabled={allImages.length <= 1}
-                aria-label="Imagem anterior"
-              >
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-5 h-5">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
-                </svg>
-                Anterior
-              </button>
+            {/* Navegação por setas */}
+            {allImages.length > 1 && (
+              <>
+                <button
+                  className="absolute left-4 top-1/2 -translate-y-1/2 p-2 text-white"
+                  onClick={prevImage}
+                  aria-label="Imagem anterior"
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-6 h-6">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
+                  </svg>
+                </button>
+                <button
+                  className="absolute right-4 top-1/2 -translate-y-1/2 p-2 text-white"
+                  onClick={nextImage}
+                  aria-label="Próxima imagem"
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-6 h-6">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+                  </svg>
+                </button>
+              </>
+            )}
 
-              <div className="px-4 py-2 bg-gray-100 dark:bg-gray-800 rounded-lg font-medium">
-                {activeIndex + 1} / {allImages.length}
-              </div>
-
-              <button
-                className="flex items-center gap-2 px-4 py-2 bg-gray-100 dark:bg-gray-800 rounded-lg hover:bg-purple-100 dark:hover:bg-purple-900 transition-colors disabled:opacity-50"
-                onClick={nextImage}
-                disabled={allImages.length <= 1}
-                aria-label="Próxima imagem"
-              >
-                Próxima
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-5 h-5">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
-                </svg>
-              </button>
-            </div>
-
-            {/* Miniaturas das imagens */}
-            <div className="bg-gray-50 dark:bg-gray-950 p-4 overflow-x-auto">
-              <div className="flex gap-2">
-                {allImages.map((img, idx) => (
-                  <button
-                    key={`thumb-${img.src}`}
-                    className={`relative min-w-[80px] h-[50px] rounded-md overflow-hidden transition-all
-                      ${idx === activeIndex ? 'ring-2 ring-purple-500 scale-105' : 'ring-1 ring-gray-200 dark:ring-gray-700 opacity-60'}`}
-                    onClick={() => setActiveIndex(idx)}
-                  >
-                    <Image
-                      src={img.src}
-                      alt={img.alt || `Miniatura ${idx + 1}`}
-                      fill
-                      style={{ objectFit: "cover" }}
-                      sizes="80px"
-                    />
-                  </button>
-                ))}
-              </div>
+            {/* Indicadores em bolinhas */}
+            <div className="absolute bottom-6 left-0 right-0 flex justify-center gap-2">
+              {allImages.map((_, idx) => (
+                <button
+                  key={`dot-${idx}`}
+                  onClick={() => setActiveIndex(idx)}
+                  className={`w-3 h-3 rounded-full ${idx === activeIndex ? 'bg-white' : 'bg-white/40'}`}
+                  aria-label={`Ir para imagem ${idx + 1}`}
+                />
+              ))}
             </div>
           </div>
         </div>
