@@ -151,7 +151,7 @@ const Navbar = () => {
         {/* Menu mobile - aparece abaixo do cabeçalho em telas pequenas */}
         <div
           className={`md:hidden transition-max-height duration-300 ease-in-out overflow-hidden ${
-            mobileMenuOpen ? "max-h-60" : "max-h-0"
+            mobileMenuOpen ? "max-h-80" : "max-h-0"
           }`}
         >
           <div className="flex flex-col pt-2 pb-3 space-y-1 border-t border-purple-800 mt-4">
