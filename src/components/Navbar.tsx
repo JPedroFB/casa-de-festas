@@ -139,6 +139,12 @@ const Navbar = () => {
             >
               Decorações
             </button>
+            <Link
+              href="/parceiros"
+              className="px-4 py-2 rounded hover:bg-purple-900 transition-colors"
+            >
+              Parceiros
+            </Link>
             <button
               onClick={() => scrollToSection("contato")}
               className="px-4 py-2 rounded bg-purple-700 hover:bg-purple-600 transition-colors"
@@ -179,6 +185,13 @@ const Navbar = () => {
             >
               Decorações
             </button>
+            <Link
+              href="/parceiros"
+              onClick={() => setMobileMenuOpen(false)}
+              className="px-4 py-3 hover:bg-purple-900 transition-colors rounded-md"
+            >
+              Parceiros
+            </Link>
             <button
               onClick={() => scrollToSection("contato")}
               className="px-4 py-3 bg-purple-700 hover:bg-purple-600 transition-colors rounded-md"
