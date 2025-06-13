@@ -24,10 +24,28 @@ export interface Service {
   buttonLink?: string;
 }
 
-export const slideImages: string[] = [
-  "/images/mesas.png",
-  "/images/mesas2.png",
-  "/images/brinquedos.png",
+export interface Slide {
+  src: string;
+  title: string;
+  description: string;
+}
+
+export const slides: Slide[] = [
+  {
+    src: "/images/mesas.png",
+    title: "Bem-vindo à Mansão dos Sonhos",
+    description: "O espaço perfeito para sua comemoração sem preocupações",
+  },
+  {
+    src: "/images/mesas2.png",
+    title: "Ambientes aconchegantes",
+    description: "Espaços planejados para todas as idades",
+  },
+  {
+    src: "/images/brinquedos.png",
+    title: "Diversão garantida",
+    description: "Brinquedos e atrações para alegrar a festa",
+  },
 ];
 
 export const structureItems: StructureItem[] = [
