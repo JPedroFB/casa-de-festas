@@ -36,7 +36,6 @@ const DecorationGallery = ({
   theme = DEFAULT_THEME,
   photographer = DEFAULT_PHOTOGRAPHER
 }: DecorationGalleryProps) => {
-  const [selectedImage, setSelectedImage] = useState(mainImage.src);
   const [showModal, setShowModal] = useState(false);
   const [activeIndex, setActiveIndex] = useState(0);
   const scrollContainerRef = useRef<HTMLDivElement>(null);
@@ -50,12 +49,6 @@ const DecorationGallery = ({
   // Encontrar o índice da imagem selecionada no array completo
   const findImageIndex = (src: string) => {
     return allImages.findIndex(img => img.src === src);
-  };
-
-  // Função para selecionar imagem com suporte a teclado
-  const handleSelectImage = (src: string, e?: React.KeyboardEvent) => {
-    if (e && e.key !== 'Enter' && e.key !== ' ') return;
-    setSelectedImage(src);
   };
 
   // Funções para abrir o modal e configurar a imagem ativa
@@ -226,10 +219,11 @@ const DecorationGallery = ({
             {/* Imagem principal - tamanho reduzido em mobile */}
             <div className="flex flex-col">
               <button
-                className={`relative w-[280px] h-full sm:w-[400px] sm:h-full md:w-[520px] md:h-full rounded-xl overflow-hidden cursor-zoom-in group
-                  ${mainImage.src === selectedImage ? 'ring-4 ring-purple-500' : 'ring-1 ring-gray-200 dark:ring-gray-700'}`}
+                className="relative w-[280px] h-full sm:w-[400px] sm:h-full md:w-[520px] md:h-full rounded-xl overflow-hidden cursor-zoom-in group ring-1 ring-gray-200 dark:ring-gray-700"
                 onClick={() => openModal(mainImage.src)}
-                onKeyDown={(e) => handleSelectImage(mainImage.src, e)}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter' || e.key === ' ') openModal(mainImage.src);
+                }}
                 tabIndex={0}
                 aria-label={`Expandir imagem principal: ${mainImage.alt}`}
               >
@@ -257,10 +251,11 @@ const DecorationGallery = ({
               {supportImages.slice(0, 3).map((img) => (
                 <button
                   key={img.src}
-                  className={`relative w-[180px] h-full sm:w-[260px] sm:h-full rounded-xl overflow-hidden cursor-zoom-in group
-                    ${img.src === selectedImage ? 'ring-4 ring-purple-500' : 'ring-1 ring-gray-200 dark:ring-gray-700'}`}
+                  className="relative w-[180px] h-full sm:w-[260px] sm:h-full rounded-xl overflow-hidden cursor-zoom-in group ring-1 ring-gray-200 dark:ring-gray-700"
                   onClick={() => openModal(img.src)}
-                  onKeyDown={(e) => handleSelectImage(img.src, e)}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter' || e.key === ' ') openModal(img.src);
+                  }}
                   tabIndex={0}
                   aria-label={`Expandir imagem: ${img.alt}`}
                 >
@@ -287,10 +282,11 @@ const DecorationGallery = ({
             {supportImages.slice(3).map((img) => (
               <button
                 key={img.src}
-                className={`relative w-[180px] h-full sm:w-[260px] sm:h-full rounded-xl overflow-hidden cursor-zoom-in group
-                  ${img.src === selectedImage ? 'ring-4 ring-purple-500' : 'ring-1 ring-gray-200 dark:ring-gray-700'}`}
+                className="relative w-[180px] h-full sm:w-[260px] sm:h-full rounded-xl overflow-hidden cursor-zoom-in group ring-1 ring-gray-200 dark:ring-gray-700"
                 onClick={() => openModal(img.src)}
-                onKeyDown={(e) => handleSelectImage(img.src, e)}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter' || e.key === ' ') openModal(img.src);
+                }}
                 tabIndex={0}
                 aria-label={`Expandir imagem: ${img.alt}`}
               >
