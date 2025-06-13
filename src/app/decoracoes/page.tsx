@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Navbar from "../../components/Navbar";
 import DecorationGallery from "../../components/DecorationGallery";
+import ContactSection from "../../components/ContactSection";
 import { Henny_Penny } from "next/font/google";
 
 const hennyPenny = Henny_Penny({
@@ -217,23 +218,8 @@ export default function Decoracoes() {
         </div>
       </section>
 
-      {/* Call to Action */}
-      <section className="bg-pink-100 py-16">
-        <div className="container mx-auto px-4 w-[90%] max-w-[1920px] text-center">
-          <h2 className="text-3xl md:text-4xl font-bold mb-6">
-            Transforme seu evento em um momento inesquecível
-          </h2>
-          <p className="text-lg mb-8 max-w-2xl mx-auto">
-            Entre em contato conosco para saber como podemos criar uma decoração personalizada para o seu evento especial.
-          </p>
-          <a
-            href="/contato"
-            className="inline-block bg-gradient-to-r from-purple-600 to-indigo-600 text-white px-8 py-4 rounded-xl font-medium hover:from-purple-700 hover:to-indigo-700 transition-all duration-300 shadow-lg"
-          >
-            Solicite um orçamento
-          </a>
-        </div>
-      </section>
+      {/* Solicite um Orçamento */}
+      <ContactSection />
 
       {/* Footer */}
       <footer className="w-full bg-indigo-950 text-white py-10 border-t border-indigo-800">
