@@ -5,6 +5,7 @@ import ContactSection from "../../components/ContactSection";
 import PartnerCard from "../../components/PartnerCard";
 import { partners } from "@/data/partners";
 import { Henny_Penny } from "next/font/google";
+import { useState } from "react";
 
 const hennyPenny = Henny_Penny({
   weight: "400",
@@ -12,6 +13,16 @@ const hennyPenny = Henny_Penny({
 });
 
 export default function Parceiros() {
+  const [activeCategory, setActiveCategory] = useState("Todos");
+  const categories = [
+    "Todos",
+    ...Array.from(new Set(partners.map((p) => p.category))),
+  ];
+  const filteredPartners =
+    activeCategory === "Todos"
+      ? partners
+      : partners.filter((p) => p.category === activeCategory);
+
   return (
     <div className="flex flex-col min-h-screen overflow-x-hidden">
       <Navbar />
@@ -26,10 +37,23 @@ export default function Parceiros() {
         </div>
       </section>
       <section className="bg-amber-50 py-16 flex-1">
-        <div className="container mx-auto px-4 w-[90%] max-w-[1920px] grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-          {partners.map((p) => (
-            <PartnerCard key={p.id} partner={p} />
-          ))}
+        <div className="container mx-auto px-4 w-[90%] max-w-[1920px]">
+          <div className="flex flex-wrap justify-center gap-4 mb-8">
+            {categories.map((cat) => (
+              <button
+                key={cat}
+                onClick={() => setActiveCategory(cat)}
+                className={`px-6 py-3 rounded-full font-medium transition-all ${activeCategory === cat ? "bg-purple-600 text-white" : "bg-white text-gray-700 hover:bg-purple-100"}`}
+              >
+                {cat}
+              </button>
+            ))}
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            {filteredPartners.map((p) => (
+              <PartnerCard key={p.id} partner={p} />
+            ))}
+          </div>
         </div>
       </section>
       <ContactSection />

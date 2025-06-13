@@ -1,6 +1,7 @@
 export interface Partner {
   id: string;
   service: string;
+  category: string;
   logo: string;
   images: { src: string; alt: string }[];
   instagram: string;
@@ -12,6 +13,7 @@ export const partners: Partner[] = [
   {
     id: "fotografo",
     service: "Fotógrafo",
+    category: "Profissionais",
     logo: "/images/mesas.png",
     images: [
       { src: "/images/mesas.png", alt: "Ensaio" },
@@ -25,6 +27,7 @@ export const partners: Partner[] = [
   {
     id: "pintura-rosto",
     service: "Pintura de Rosto",
+    category: "Entretenimento",
     logo: "/images/mesas2.png",
     images: [
       { src: "/images/mesas2.png", alt: "Arte 1" },
@@ -38,6 +41,7 @@ export const partners: Partner[] = [
   {
     id: "tatuagem",
     service: "Tatuagem Temporária",
+    category: "Entretenimento",
     logo: "/images/brinquedos.png",
     images: [
       { src: "/images/brinquedos.png", alt: "Tatuagem 1" },
@@ -51,6 +55,7 @@ export const partners: Partner[] = [
   {
     id: "boleira",
     service: "Boleira e Doces",
+    category: "Comida",
     logo: "/images/salgados.png",
     images: [
       { src: "/images/salgados.png", alt: "Bolos" },
@@ -64,6 +69,7 @@ export const partners: Partner[] = [
   {
     id: "decoracoes",
     service: "Decorações e Cenários",
+    category: "Decoração",
     logo: "/images/mesas.png",
     images: [
       { src: "/images/mesas.png", alt: "Decoração 1" },
@@ -77,6 +83,7 @@ export const partners: Partner[] = [
   {
     id: "balao",
     service: "Esculturas de Balão",
+    category: "Decoração",
     logo: "/images/brinquedos.png",
     images: [
       { src: "/images/brinquedos.png", alt: "Balão 1" },
