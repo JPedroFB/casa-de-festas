@@ -27,32 +27,32 @@ export const useModalControls = ({
   };  // Função para mudança de imagem com animação fade
   const changeImageWithFade = (newIndex: number) => {
     if (isNavigating || newIndex === activeIndex) return;
-    
+
     setIsNavigating(true);
-    
+
     // Fade out da imagem atual
     setImageOpacity(0);
-    
+
     setTimeout(() => {
       // Muda o índice após o fade out
       setActiveIndex(newIndex);
-      
+
       // Pré-carrega a nova imagem
       const newImage = new window.Image();
       newImage.onload = () => {
         // Fade in da nova imagem
         setImageOpacity(1);
         setTimeout(() => setIsNavigating(false), 50);
-        
+
         // Pré-carregar próximas imagens adjacentes para navegação mais fluida
         if (allImages.length > 1) {
           const prevIndex = (newIndex - 1 + allImages.length) % allImages.length;
           const nextIndex = (newIndex + 1) % allImages.length;
-          
+
           // Pré-carregar imagem anterior
           const prevImg = new window.Image();
           prevImg.src = allImages[prevIndex].src;
-          
+
           // Pré-carregar próxima imagem
           const nextImg = new window.Image();
           nextImg.src = allImages[nextIndex].src;
@@ -95,10 +95,10 @@ export const useModalControls = ({
     if ((window as any).closeAllModals && typeof (window as any).closeAllModals === 'function') {
       (window as any).closeAllModals();
     }
-    
+
     // Registra esta função no objeto global para permitir fechamento por outros modais
     (window as any).closeAllModals = closeModal;
-    
+
     const index = findImageIndex(src);
     setActiveIndex(index >= 0 ? index : 0);
     setImageOpacity(1); // Garantir que a primeira imagem apareça
@@ -125,28 +125,28 @@ export const useModalControls = ({
           top: window.scrollY + window.innerHeight / 2 - 300,
           behavior: "smooth",
         });
-      }      setShowModal(true);
-      
+      } setShowModal(true);
+
       // Ocultar o navbar quando o modal abrir
       if (window && (window as any).setNavbarVisible) {
         (window as any).setNavbarVisible(false);
       }
-      
+
       // Pré-carregar imagens adjacentes para navegação mais fluida
       const currentIndex = index >= 0 ? index : 0;
       if (allImages.length > 1) {
         const prevIndex = (currentIndex - 1 + allImages.length) % allImages.length;
         const nextIndex = (currentIndex + 1) % allImages.length;
-        
+
         // Pré-carregar imagem anterior
         const prevImg = new window.Image();
         prevImg.src = allImages[prevIndex].src;
-        
+
         // Pré-carregar próxima imagem
         const nextImg = new window.Image();
         nextImg.src = allImages[nextIndex].src;
       }
-      
+
       // Não bloqueamos mais a rolagem da página
     }, 150); // Delay reduzido de 300ms para 150ms
   };
@@ -184,13 +184,13 @@ export const useModalControls = ({
       if (window && (window as any).closeAllModals === closeModal) {
         (window as any).closeAllModals = undefined;
       }
-      
+
       // Garantir que a navbar seja restaurada quando o componente for desmontado
       if (window && (window as any).setNavbarVisible) {
         (window as any).setNavbarVisible(true);
       }
     };
-  }, []);return {
+  }, []); return {
     // States
     showModal,
     activeIndex,
