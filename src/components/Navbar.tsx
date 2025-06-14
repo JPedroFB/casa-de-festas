@@ -129,19 +129,12 @@ const Navbar = () => {
               className="px-4 py-2 rounded hover:bg-white/20 transition-colors"
             >
               Serviços
-            </button>
-            <button
+            </button>            <button
               onClick={() => scrollToSection("decoracoes")}
               className="px-4 py-2 rounded hover:bg-white/20 transition-colors"
             >
               Decorações
             </button>
-            <Link
-              href="/parceiros"
-              className="px-4 py-2 rounded hover:bg-white/20 transition-colors"
-            >
-              Parceiros
-            </Link>
             <button
               onClick={() => scrollToSection("contato")}
               className="px-4 py-2 rounded bg-emerald-600/80 hover:bg-emerald-600 transition-colors"
@@ -174,20 +167,12 @@ const Navbar = () => {
               className="px-4 py-3 hover:bg-white/20 transition-colors rounded-md"
             >
               Serviços
-            </button>
-            <button
+            </button>            <button
               onClick={() => scrollToSection("decoracoes")}
               className="px-4 py-3 hover:bg-white/20 transition-colors rounded-md"
             >
               Decorações
             </button>
-            <Link
-              href="/parceiros"
-              onClick={() => setMobileMenuOpen(false)}
-              className="px-4 py-3 hover:bg-white/20 transition-colors rounded-md"
-            >
-              Parceiros
-            </Link>
             <button
               onClick={() => scrollToSection("contato")}
               className="px-4 py-3 bg-emerald-600/80 hover:bg-emerald-600 transition-colors rounded-md"

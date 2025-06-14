@@ -42,17 +42,15 @@ export default function Decoracoes() {
   return (
     <>
       <Navbar />{" "}
-      <main className="min-h-screen">
-        {/* Cabeçalho */}
-        <section className="w-full bg-gradient-to-br from-indigo-950 to-purple-900 relative pt-24 px-4 pb-32">
+      <main className="min-h-screen">        {/* Cabeçalho */}
+        <section className="w-full bg-gradient-to-tl from-emerald-300/90 via-purple-300/90 to-yellow-200/90 relative pt-24 px-4 pb-32">
           <div className="w-full flex flex-col justify-center items-center py-8 px-2.5 sm:px-4">
-            <div className="w-full sm:w-[90%] max-w-[1920px] mb-10 text-center px-2.5 sm:px-0">
-              <h1
-                className={`${hennyPenny.className} text-4xl md:text-5xl lg:text-6xl text-center mb-4 bg-clip-text text-transparent bg-gradient-to-r from-amber-300 to-pink-300`}
+            <div className="w-full sm:w-[90%] max-w-[1920px] mb-10 text-center px-2.5 sm:px-0">              <h1
+                className={`${hennyPenny.className} text-4xl md:text-5xl lg:text-6xl text-center mb-4 bg-clip-text text-transparent bg-gradient-to-r from-emerald-600 to-purple-600`}
               >
                 Decorações dos Sonhos
               </h1>
-              <p className="text-center text-lg md:text-xl max-w-3xl mx-auto text-white/90">
+              <p className="text-center text-lg md:text-xl max-w-3xl mx-auto text-gray-700">
                 Transformamos qualquer ambiente em um cenário mágico para seu
                 evento especial, com decorações exclusivas e personalizadas.
               </p>
