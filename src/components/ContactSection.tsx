@@ -7,13 +7,27 @@ const hennyPenny = Henny_Penny({
   subsets: ["latin"],
 });
 
-export default function ContactSection() {
+interface ContactSectionProps {
+  title?: string;
+  description?: string;
+}
+
+export default function ContactSection({ 
+  title = "Entre em Contato",
+  description
+}: ContactSectionProps) {
   return (
     <section id="contato" className="w-full bg-indigo-950 text-white py-16">
       <div className="w-full sm:container mx-auto px-2.5 sm:px-4 sm:w-[90%] max-w-[1920px]">
         <h2 className="text-4xl font-bold text-center mb-8">
-          <span className={hennyPenny.className}>Entre em Contato</span>
+          <span className={hennyPenny.className}>{title}</span>
         </h2>
+        
+        {description && (
+          <p className="text-center text-lg max-w-2xl mx-auto mb-8 text-gray-300">
+            {description}
+          </p>
+        )}
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto">
           <div className="bg-indigo-900/50 p-6 rounded-xl flex flex-col space-y-6">
