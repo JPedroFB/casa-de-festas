@@ -47,6 +47,40 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {  return (
     <html lang="pt-BR">
+      <head>
+        <link 
+          rel="preload" 
+          href="/images/pattern-confetti.svg" 
+          as="image" 
+          type="image/svg+xml" 
+        />
+        {/* Adicionando scripts de preload para otimização */}
+        <script 
+          dangerouslySetInnerHTML={{
+            __html: `
+              // Precarregamento de componentes principais
+              const componentsToPreload = [
+                '/components/DynamicMainCarousel',
+                '/components/HeroSection',
+                '/components/Navbar',
+                '/components/Footer'
+              ];
+              
+              if (window.requestIdleCallback) {
+                requestIdleCallback(() => {
+                  componentsToPreload.forEach(component => {
+                    const link = document.createElement('link');
+                    link.rel = 'prefetch';
+                    link.href = component;
+                    link.as = 'script';
+                    document.head.appendChild(link);
+                  });
+                });
+              }
+            `
+          }}
+        />
+      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${hennyPenny.variable} antialiased`}
       >

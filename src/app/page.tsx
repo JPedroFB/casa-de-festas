@@ -1,13 +1,29 @@
 "use client";
 
+import dynamic from 'next/dynamic';
 import Navbar from "../components/Navbar";
-import HeroSection from "../components/HeroSection";
-import StructureSection from "../components/StructureSection";
-import ServicesSection from "../components/ServicesSection";
-import DecorationsSection from "../components/DecorationsSection";
+// Componente HeroSection será importado dinamicamente mais abaixo
 import Footer from "../components/Footer";
 
 import { slides, structureItems, kidsAreaData, services } from "@/data/mockData";
+
+// Importações dinâmicas para componentes pesados
+const HeroSection = dynamic(() => import("../components/HeroSection"), {
+  loading: () => <div className="w-full h-[60vh] bg-gradient-to-r from-purple-100/30 to-indigo-100/30 animate-pulse"></div>,
+  ssr: true
+});
+
+const StructureSection = dynamic(() => import("../components/StructureSection"), {
+  loading: () => <div className="w-full h-96 bg-gradient-to-r from-purple-100/20 to-indigo-100/20 animate-pulse"></div>,
+});
+
+const ServicesSection = dynamic(() => import("../components/ServicesSection"), {
+  loading: () => <div className="w-full h-96 bg-gradient-to-r from-purple-100/10 to-indigo-100/10 animate-pulse"></div>,
+});
+
+const DecorationsSection = dynamic(() => import("../components/DecorationsSection"), {
+  loading: () => <div className="w-full h-96 bg-gradient-to-r from-purple-100/10 to-indigo-100/10 animate-pulse"></div>,
+});
 
 export default function Home() {
   return (

@@ -1,6 +1,6 @@
 "use client";
 
-import MainCarousel from "./MainCarousel";
+import DynamicMainCarousel from "./DynamicMainCarousel";
 import { Henny_Penny } from "next/font/google";
 import type { Slide } from "@/data/mockData";
 import SectionDivider from "./SectionDivider";
@@ -32,10 +32,8 @@ export default function HeroSection({ slides }: HeroSectionProps) {  return (
             maior casa de festas infantis da Zona Norte, com mais de 800 m² de
             diversão no Grajaú.
           </p>
-        </div>
-
-        <div className="w-full sm:w-[90%] max-w-[1920px] px-0 sm:px-0">
-          <MainCarousel slides={slides} />
+        </div>        <div className="w-full sm:w-[90%] max-w-[1920px] px-0 sm:px-0">
+          <DynamicMainCarousel slides={slides} />
         </div>
       </div>
     </section>

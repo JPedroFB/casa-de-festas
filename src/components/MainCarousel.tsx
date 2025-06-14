@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useState, useEffect } from "react";
+import { useState, useEffect, memo } from "react";
 import { Henny_Penny } from "next/font/google";
 import type { Slide } from "@/data/mockData";
 
@@ -13,7 +13,7 @@ const hennyPenny = Henny_Penny({
 interface MainCarouselProps {
   slides: Slide[];
 }
-export default function MainCarousel({ slides }: MainCarouselProps) {
+function MainCarousel({ slides }: MainCarouselProps) {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
 
@@ -55,14 +55,15 @@ export default function MainCarousel({ slides }: MainCarouselProps) {
                 : "opacity-0 scale-95"
             }`}
           >
-            <div className="relative w-full h-full">
-              <Image
+            <div className="relative w-full h-full">                <Image
                 src={slide.src}
                 alt={`Slide ${index + 1}`}
                 fill
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 70vw"
                 style={{ objectFit: "cover" }}
                 className="transition-transform duration-10000 hover:scale-105"
                 priority={index === 0}
+                quality={80}
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
               <div className="absolute bottom-0 left-0 p-8 md:p-12 text-white w-full hidden md:block">
@@ -202,3 +203,6 @@ export default function MainCarousel({ slides }: MainCarouselProps) {
     </div>
   );
 }
+
+// Memorizando o componente para evitar re-renderizações desnecessárias
+export default memo(MainCarousel);
