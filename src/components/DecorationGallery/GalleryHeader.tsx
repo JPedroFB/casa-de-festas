@@ -8,7 +8,7 @@ const GalleryHeader = ({ theme, photographer }: GalleryHeaderProps) => {
         Tema: {theme}
       </h3>      {photographer && (
         <div className="flex items-center justify-between bg-gradient-to-r from-purple-50 to-indigo-50 dark:from-purple-900/30 dark:to-indigo-900/30 px-4 py-1.5 rounded-full">
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-3 mr-3">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
