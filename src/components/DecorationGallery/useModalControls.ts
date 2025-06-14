@@ -5,12 +5,14 @@ interface UseModalControlsProps {
   allImages: (MainImage | SupportImage)[];
   imageButtonRefs: React.MutableRefObject<Map<string, HTMLButtonElement>>;
   scrollContainerRef: React.RefObject<HTMLDivElement | null>;
+  galleryContainerRef?: React.RefObject<HTMLDivElement | null>;
 }
 
 export const useModalControls = ({
   allImages,
   imageButtonRefs,
   scrollContainerRef,
+  galleryContainerRef,
 }: UseModalControlsProps) => {
   const [showModal, setShowModal] = useState(false);
   const [activeIndex, setActiveIndex] = useState(0);
@@ -51,15 +53,20 @@ export const useModalControls = ({
         block: "nearest",
         inline: "center",
       });
-    }
-
-    // Pequeno atraso para dar tempo da animação de centralização da galeria ocorrer
+    }    // Pequeno atraso para dar tempo da animação de centralização da galeria ocorrer
     setTimeout(() => {
-      // Rolar para o topo do componente para garantir visibilidade total do modal
-      window.scrollTo({
-        top: window.scrollY + window.innerHeight / 2 - 300,
-        behavior: "smooth",
-      });
+      // Rolar para o topo da galeria com offset similar ao ExpandableKidsArea
+      if (galleryContainerRef?.current) {
+        const yOffset = -20; // Respiro de 20 pixels do topo
+        const y = galleryContainerRef.current.getBoundingClientRect().top + window.pageYOffset + yOffset;
+        window.scrollTo({ top: y, behavior: 'smooth' });
+      } else {
+        // Fallback caso a ref não esteja disponível
+        window.scrollTo({
+          top: window.scrollY + window.innerHeight / 2 - 300,
+          behavior: "smooth",
+        });
+      }
 
       setShowModal(true);
       document.body.style.overflow = "hidden"; // Previne rolagem do body

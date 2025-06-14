@@ -31,6 +31,9 @@ const DecorationGallery = ({
 }: DecorationGalleryProps) => {
   // Mapa de referências para os botões das imagens
   const imageButtonRefs = useRef<Map<string, HTMLButtonElement>>(new Map());
+  
+  // Referência para o container da galeria para rolagem
+  const galleryContainerRef = useRef<HTMLDivElement>(null);
 
   // Criar array com todas as imagens para facilitar a navegação
   const allImages = [mainImage, ...supportImages];
@@ -42,7 +45,6 @@ const DecorationGallery = ({
     scrollLeft,
     scrollRight,
   } = useScrollControls();
-
   // Hook para controle do modal
   const {
     showModal,
@@ -60,6 +62,7 @@ const DecorationGallery = ({
     allImages,
     imageButtonRefs,
     scrollContainerRef,
+    galleryContainerRef,
   });
 
   // Função para registrar os botões de imagem
@@ -70,9 +73,11 @@ const DecorationGallery = ({
     if (element) {
       imageButtonRefs.current.set(src, element);
     }
-  };
-  return (
-    <div className="w-full bg-white dark:bg-gray-900 rounded-2xl shadow-xl overflow-hidden p-3 md:p-8 backdrop-blur-sm bg-opacity-90 dark:bg-opacity-90">
+  };  return (
+    <div 
+      ref={galleryContainerRef}
+      className="w-full bg-white dark:bg-gray-900 rounded-2xl shadow-xl overflow-hidden p-3 md:p-8 backdrop-blur-sm bg-opacity-90 dark:bg-opacity-90"
+    >
       {/* Cabeçalho com tema e fotógrafo - design moderno */}
       <GalleryHeader theme={theme} photographer={photographer} />{" "}
       {/* Galeria de imagens com scroll horizontal e controles de navegação */}
