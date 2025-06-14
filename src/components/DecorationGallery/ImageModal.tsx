@@ -32,7 +32,6 @@ const ImageModal = ({
     const touchEndX = e.touches[0].clientX;
     (e.currentTarget as HTMLElement).dataset.touchEndX = touchEndX.toString();
   });
-
   const handleTouchEnd = onTouchEnd || ((e: React.TouchEvent) => {
     const element = e.currentTarget as HTMLElement;
     const touchStartX = parseFloat(element.dataset.touchStartX || "0");
@@ -46,6 +45,22 @@ const ImageModal = ({
       }
     }
   });
+
+  // Pré-carregamento das imagens adjacentes para navegação mais fluida
+  useEffect(() => {
+    if (isOpen && images.length > 1) {
+      const prevIndex = (activeIndex - 1 + images.length) % images.length;
+      const nextIndex = (activeIndex + 1) % images.length;
+      
+      // Pré-carregar imagem anterior
+      const prevImg = new window.Image();
+      prevImg.src = images[prevIndex].src;
+      
+      // Pré-carregar próxima imagem
+      const nextImg = new window.Image();
+      nextImg.src = images[nextIndex].src;
+    }
+  }, [activeIndex, images, isOpen]);
 
   if (!isOpen) return null;
 
@@ -93,9 +108,7 @@ const ImageModal = ({
           <p className="text-sm sm:text-base font-medium">
             {theme} - {activeIndex + 1}/{images.length}
           </p>
-        </div>
-
-        {/* Container da imagem em tela cheia */}
+        </div>        {/* Container da imagem em tela cheia */}
         <div className="w-full h-full flex items-center justify-center">
           <div className="relative w-full h-full max-h-screen">
             <Image
@@ -105,7 +118,7 @@ const ImageModal = ({
               style={{ objectFit: "contain", objectPosition: "center" }}
               sizes="100vw"
               priority
-              className="transition-opacity duration-300"
+              className="transition-opacity duration-150"
             />
           </div>
         </div>

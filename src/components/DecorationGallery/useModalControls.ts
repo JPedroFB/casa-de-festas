@@ -18,19 +18,30 @@ export const useModalControls = ({
   const [activeIndex, setActiveIndex] = useState(0);
   const [touchStartX, setTouchStartX] = useState<number | null>(null);
   const [touchEndX, setTouchEndX] = useState<number | null>(null);
+  const [isNavigating, setIsNavigating] = useState(false);
 
   // Encontrar o índice da imagem selecionada no array completo
   const findImageIndex = (src: string) => {
     return allImages.findIndex((img) => img.src === src);
   };
 
-  // Navegação entre imagens no modal
+  // Navegação entre imagens no modal (mais rápida)
   const nextImage = () => {
+    if (isNavigating) return; // Previne cliques múltiplos
+    setIsNavigating(true);
     setActiveIndex((prev) => (prev + 1) % allImages.length);
+
+    // Reset do flag após um delay curto
+    setTimeout(() => setIsNavigating(false), 100);
   };
 
   const prevImage = () => {
+    if (isNavigating) return; // Previne cliques múltiplos
+    setIsNavigating(true);
     setActiveIndex((prev) => (prev - 1 + allImages.length) % allImages.length);
+
+    // Reset do flag após um delay curto
+    setTimeout(() => setIsNavigating(false), 100);
   };
 
   // Fechar modal
@@ -53,7 +64,7 @@ export const useModalControls = ({
         block: "nearest",
         inline: "center",
       });
-    }    // Pequeno atraso para dar tempo da animação de centralização da galeria ocorrer
+    }    // Delay reduzido para abertura mais rápida do modal
     setTimeout(() => {
       // Rolar para o topo da galeria com offset similar ao ExpandableKidsArea
       if (galleryContainerRef?.current) {
@@ -70,7 +81,7 @@ export const useModalControls = ({
 
       setShowModal(true);
       document.body.style.overflow = "hidden"; // Previne rolagem do body
-    }, 300); // Delay para a animação de centralização terminar
+    }, 150); // Delay reduzido de 300ms para 150ms
   };
 
   // Handlers para eventos de teclado
@@ -107,12 +118,12 @@ export const useModalControls = ({
       document.body.style.overflow = "";
     };
   }, []);
-
   return {
     // States
     showModal,
     activeIndex,
     setActiveIndex,
+    isNavigating,
 
     // Functions
     openModal,

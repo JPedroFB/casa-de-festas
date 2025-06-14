@@ -44,14 +44,12 @@ const GalleryStyles = () => {
         100% {
           box-shadow: 0 0 0 0 rgba(126, 34, 206, 0);
         }
-      }
-
-      .animate-fadeIn {
-        animation: fadeIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      }      .animate-fadeIn {
+        animation: fadeIn 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
       }
 
       .animate-zoomIn {
-        animation: zoomIn 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+        animation: zoomIn 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
       }
 
       .animate-slideIn {

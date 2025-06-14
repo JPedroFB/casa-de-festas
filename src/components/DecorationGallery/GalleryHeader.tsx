@@ -6,10 +6,9 @@ const GalleryHeader = ({ theme, photographer }: GalleryHeaderProps) => {
     <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center mb-4 sm:mb-6 gap-3 sm:gap-0">
       <h3 className="text-xl sm:text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-indigo-600 to-purple-600 dark:from-indigo-400 dark:to-purple-400">
         Tema: {theme}
-      </h3>
-      {photographer && (
-        <div className="flex items-center gap-3 bg-gradient-to-r from-purple-50 to-indigo-50 dark:from-purple-900/30 dark:to-indigo-900/30 px-4 py-1.5 rounded-full">
-          <span className="text-xs sm:text-sm text-gray-700 dark:text-gray-300 flex items-center gap-1">
+      </h3>      {photographer && (
+        <div className="flex items-center justify-between bg-gradient-to-r from-purple-50 to-indigo-50 dark:from-purple-900/30 dark:to-indigo-900/30 px-4 py-1.5 rounded-full">
+          <div className="flex items-center gap-3">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
@@ -23,19 +22,21 @@ const GalleryHeader = ({ theme, photographer }: GalleryHeaderProps) => {
                 clipRule="evenodd"
               />
             </svg>
-            <a
-              href={`https://instagram.com/${photographer.instagram.replace(
-                "@",
-                ""
-              )}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-purple-600 dark:text-purple-400 hover:underline font-medium"
-            >
-              {photographer.instagramProfile}
-            </a>
-          </span>
-          <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full overflow-hidden border-2 border-purple-300 dark:border-purple-500 shadow-md">
+            <span className="text-xs sm:text-sm text-gray-700 dark:text-gray-300">
+              <a
+                href={`https://instagram.com/${photographer.instagram.replace(
+                  "@",
+                  ""
+                )}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-purple-600 dark:text-purple-400 hover:underline font-medium"
+              >
+                {photographer.instagramProfile}
+              </a>
+            </span>
+          </div>
+          <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full overflow-hidden border-2 border-purple-300 dark:border-purple-500 shadow-md flex-shrink-0">
             <Image
               src={photographer.profileImage}
               alt={`Perfil de ${photographer.name}`}
