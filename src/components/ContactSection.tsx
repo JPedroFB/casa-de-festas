@@ -15,21 +15,21 @@ interface ContactSectionProps {
 export default function ContactSection({ 
   title = "Entre em Contato",
   description
-}: ContactSectionProps) {
-  return (
+}: ContactSectionProps) {  return (
     <section id="contato" className="w-full bg-indigo-950 text-white py-16 relative">
-      <div className="w-full sm:container mx-auto px-2.5 sm:px-4 sm:w-[90%] max-w-[1920px]">
-        <h2 className="text-4xl font-bold text-center mb-8">
-          <span className={hennyPenny.className}>{title}</span>
-        </h2>
-        
-        {description && (
-          <p className="text-center text-lg max-w-2xl mx-auto mb-8 text-gray-300">
-            {description}
-          </p>
-        )}
+      <div className="w-full flex flex-col justify-center items-center py-8 px-2.5 sm:px-4">
+        <div className="w-full sm:w-[90%] max-w-[1920px] px-2.5 sm:px-0">
+          <h2 className="text-4xl font-bold text-center mb-8">
+            <span className={hennyPenny.className}>{title}</span>
+          </h2>
+          
+          {description && (
+            <p className="text-center text-lg max-w-2xl mx-auto mb-8 text-gray-300">
+              {description}
+            </p>
+          )}
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto">
           <div className="bg-indigo-900/50 p-6 rounded-xl flex flex-col space-y-6">
             <h3 className="text-2xl font-semibold">Fale Conosco</h3>
             <div className="flex flex-col space-y-4">
@@ -113,7 +113,7 @@ export default function ContactSection({
                 referrerPolicy="no-referrer-when-downgrade"
                 title="Localização Mansão dos Sonhos"
               ></iframe>
-            </div>
+            </div>          </div>
           </div>
         </div>
       </div>
