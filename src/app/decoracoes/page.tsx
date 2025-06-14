@@ -19,7 +19,6 @@ async function DecorationsContent() {
     <div className="space-y-12 md:space-y-16">
       {albums.map((album) => (
         <div key={album.id} className="mb-12">
-          {" "}
           <DecorationGallery
             mainImage={album.mainImage}
             supportImages={album.supportImages}
@@ -42,7 +41,7 @@ async function DecorationsContent() {
 export default function Decoracoes() {
   return (
     <>
-      <Navbar />
+      <Navbar />{" "}
       <main className="min-h-screen">
         {/* Cabeçalho */}
         <section className="w-full bg-gradient-to-br from-indigo-950 to-purple-900 relative pt-24 px-4 pb-32">
@@ -58,14 +57,13 @@ export default function Decoracoes() {
                 evento especial, com decorações exclusivas e personalizadas.
               </p>
             </div>
-          </div>{" "}
+          </div>
           <SectionDivider
             pattern="wave"
             color="text-pink-100"
             position="bottom"
           />
-        </section>
-
+        </section>{" "}
         {/* Galerias de Decorações */}
         <section className="py-12 px-4 bg-pink-100 relative pb-32">
           <div className="container mx-auto max-w-6xl space-y-16 pb-8">
@@ -75,7 +73,7 @@ export default function Decoracoes() {
               }
             >
               <DecorationsContent />
-            </Suspense>{" "}
+            </Suspense>
           </div>
           <SectionDivider
             pattern="zigzag"
@@ -84,7 +82,6 @@ export default function Decoracoes() {
           />
         </section>
       </main>
-
       <Footer />
     </>
   );

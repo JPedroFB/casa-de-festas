@@ -119,10 +119,9 @@ export default function MainCarousel({ slides }: MainCarouselProps) {
             <path d="M9 18l6-6-6-6" />
           </svg>
         </button>
-      </div>
-
-      {/* Indicadores de slide */}
-      <div className="hidden md:flex absolute bottom-6 left-1/2 transform -translate-x-1/2 space-x-2">
+      </div>      {/* Indicadores de slide - movidos para fora do carrossel */}
+        {/* Indicadores de slide para desktop - posicionados abaixo do carrossel */}
+      <div className="hidden md:flex justify-center mt-4 space-x-2">
         {slides.map((_, index) => (
           <button
             key={index}
@@ -136,6 +135,7 @@ export default function MainCarousel({ slides }: MainCarouselProps) {
           />
         ))}
       </div>
+      
       {/* Texto abaixo do carrossel para dispositivos móveis */}
       <div className="md:hidden text-center text-white mt-6 px-6">
         <h2 className={`text-2xl font-bold mb-2 ${hennyPenny.className}`}>{slides[currentSlide].title}</h2>

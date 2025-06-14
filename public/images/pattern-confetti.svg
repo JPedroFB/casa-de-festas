@@ -1,0 +1,18 @@
+<svg width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+  <g fill="none" fill-rule="evenodd">
+    <circle cx="10" cy="10" r="2" fill="#FFF" opacity="0.3" />
+    <circle cx="30" cy="18" r="1.5" fill="#FFD1DC" opacity="0.3" />
+    <circle cx="50" cy="30" r="2" fill="#FFF" opacity="0.3" />
+    <circle cx="70" cy="12" r="1.8" fill="#FF9ECE" opacity="0.3" />
+    <rect x="85" y="25" width="2.5" height="2.5" fill="#FFD1DC" opacity="0.3" transform="rotate(45 86.25 26.25)" />
+    <rect x="15" y="35" width="3" height="3" fill="#FFF" opacity="0.3" transform="rotate(30 16.5 36.5)" />
+    <rect x="40" y="60" width="2" height="2" fill="#FFD1DC" opacity="0.3" transform="rotate(15 41 61)" />
+    <rect x="65" y="45" width="3" height="3" fill="#FFF" opacity="0.3" transform="rotate(60 66.5 46.5)" />
+    <rect x="90" y="70" width="2" height="2" fill="#FFD1DC" opacity="0.3" transform="rotate(45 91 71)" />
+    <rect x="20" y="80" width="2.5" height="2.5" fill="#FF9ECE" opacity="0.3" transform="rotate(10 21.25 81.25)" />
+    <path d="M75,90 L78,93 L75,96" stroke="#FFF" stroke-width="1" opacity="0.3" />
+    <path d="M95,45 L92,48 L89,45" stroke="#FFD1DC" stroke-width="1" opacity="0.3" />
+    <path d="M35,50 L38,53 L35,56" stroke="#FF9ECE" stroke-width="1" opacity="0.3" />
+    <path d="M5,62 L2,65 L5,68" stroke="#FFF" stroke-width="1" opacity="0.3" />
+  </g>
+</svg>
