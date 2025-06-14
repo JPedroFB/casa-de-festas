@@ -47,18 +47,7 @@ export default function ServiceCard({
 
   // Categorias do cardápio
   const menuCategories: MenuCategory[] = [
-    {
-      title: "Rodízio de Pizzas (Opcional)",
-      items: [
-        "Portuguesa",
-        "Calabresa",
-        "Muzzarela",
-        "Presunto",
-        "Alho",
-        "Banana",
-        "Romeu e Julieta",
-      ],
-    },
+    
     {
       title: "Buffet Adulto",
       items: [
@@ -116,6 +105,18 @@ export default function ServiceCard({
         "Guaraná Natural",
         "Água",
         "Mate",
+      ],
+    },
+    {
+      title: "Rodízio de Pizzas (Opcional)",
+      items: [
+        "Portuguesa",
+        "Calabresa",
+        "Muzzarela",
+        "Presunto",
+        "Alho",
+        "Banana",
+        "Romeu e Julieta",
       ],
     },
     {
@@ -379,7 +380,7 @@ export default function ServiceCard({
           ) : (
             <div className="text-gray-600 dark:text-gray-300">
               <p className="mb-6 text-lg">
-                Nosso cardápio foi elaborado por chefs especializados para proporcionar uma experiência gastronômica única. Use as setas acima para navegar pelas fotos e conhecer as opções do nosso buffet premium!
+                Nosso cardápio foi elaborado por chefs especializados para proporcionar uma experiência gastronômica única.
               </p>
 
               {/* Lista de categorias do cardápio */}
