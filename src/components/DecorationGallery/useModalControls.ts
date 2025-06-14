@@ -19,41 +19,89 @@ export const useModalControls = ({
   const [touchStartX, setTouchStartX] = useState<number | null>(null);
   const [touchEndX, setTouchEndX] = useState<number | null>(null);
   const [isNavigating, setIsNavigating] = useState(false);
+  const [imageOpacity, setImageOpacity] = useState(1);
 
   // Encontrar o índice da imagem selecionada no array completo
   const findImageIndex = (src: string) => {
     return allImages.findIndex((img) => img.src === src);
+  };  // Função para mudança de imagem com animação fade
+  const changeImageWithFade = (newIndex: number) => {
+    if (isNavigating || newIndex === activeIndex) return;
+    
+    setIsNavigating(true);
+    
+    // Fade out da imagem atual
+    setImageOpacity(0);
+    
+    setTimeout(() => {
+      // Muda o índice após o fade out
+      setActiveIndex(newIndex);
+      
+      // Pré-carrega a nova imagem
+      const newImage = new window.Image();
+      newImage.onload = () => {
+        // Fade in da nova imagem
+        setImageOpacity(1);
+        setTimeout(() => setIsNavigating(false), 50);
+        
+        // Pré-carregar próximas imagens adjacentes para navegação mais fluida
+        if (allImages.length > 1) {
+          const prevIndex = (newIndex - 1 + allImages.length) % allImages.length;
+          const nextIndex = (newIndex + 1) % allImages.length;
+          
+          // Pré-carregar imagem anterior
+          const prevImg = new window.Image();
+          prevImg.src = allImages[prevIndex].src;
+          
+          // Pré-carregar próxima imagem
+          const nextImg = new window.Image();
+          nextImg.src = allImages[nextIndex].src;
+        }
+      };
+      newImage.onerror = () => {
+        // Em caso de erro, ainda assim mostra a imagem
+        setImageOpacity(1);
+        setTimeout(() => setIsNavigating(false), 50);
+      };
+      newImage.src = allImages[newIndex].src;
+    }, 150); // Tempo do fade out
   };
 
-  // Navegação entre imagens no modal (mais rápida)
+  // Navegação entre imagens no modal (otimizada)
   const nextImage = () => {
-    if (isNavigating) return; // Previne cliques múltiplos
-    setIsNavigating(true);
-    setActiveIndex((prev) => (prev + 1) % allImages.length);
-
-    // Reset do flag após um delay curto
-    setTimeout(() => setIsNavigating(false), 100);
+    const newIndex = (activeIndex + 1) % allImages.length;
+    changeImageWithFade(newIndex);
   };
 
   const prevImage = () => {
-    if (isNavigating) return; // Previne cliques múltiplos
-    setIsNavigating(true);
-    setActiveIndex((prev) => (prev - 1 + allImages.length) % allImages.length);
-
-    // Reset do flag após um delay curto
-    setTimeout(() => setIsNavigating(false), 100);
+    const newIndex = (activeIndex - 1 + allImages.length) % allImages.length;
+    changeImageWithFade(newIndex);
   };
 
-  // Fechar modal
+  // Navegação direta para um índice específico
+  const setActiveIndexWithFade = (index: number) => {
+    changeImageWithFade(index);
+  };  // Fechar modal
   const closeModal = () => {
     setShowModal(false);
-    document.body.style.overflow = ""; // Restaura rolagem do body
-  };
-
-  // Abrir modal com animações e centralização
+    // Restaurar a visibilidade do navbar
+    if (window && (window as any).setNavbarVisible) {
+      (window as any).setNavbarVisible(true);
+    }
+    // Não precisa mais restaurar a rolagem, pois não será bloqueada
+  };// Abrir modal com animações e centralização
   const openModal = (src: string) => {
+    // Fechar qualquer outro modal que esteja aberto (implementação global)
+    if ((window as any).closeAllModals && typeof (window as any).closeAllModals === 'function') {
+      (window as any).closeAllModals();
+    }
+    
+    // Registra esta função no objeto global para permitir fechamento por outros modais
+    (window as any).closeAllModals = closeModal;
+    
     const index = findImageIndex(src);
     setActiveIndex(index >= 0 ? index : 0);
+    setImageOpacity(1); // Garantir que a primeira imagem apareça
 
     // Primeiro centralize a imagem clicada na galeria
     const imageButton = imageButtonRefs.current.get(src);
@@ -77,10 +125,29 @@ export const useModalControls = ({
           top: window.scrollY + window.innerHeight / 2 - 300,
           behavior: "smooth",
         });
+      }      setShowModal(true);
+      
+      // Ocultar o navbar quando o modal abrir
+      if (window && (window as any).setNavbarVisible) {
+        (window as any).setNavbarVisible(false);
       }
-
-      setShowModal(true);
-      document.body.style.overflow = "hidden"; // Previne rolagem do body
+      
+      // Pré-carregar imagens adjacentes para navegação mais fluida
+      const currentIndex = index >= 0 ? index : 0;
+      if (allImages.length > 1) {
+        const prevIndex = (currentIndex - 1 + allImages.length) % allImages.length;
+        const nextIndex = (currentIndex + 1) % allImages.length;
+        
+        // Pré-carregar imagem anterior
+        const prevImg = new window.Image();
+        prevImg.src = allImages[prevIndex].src;
+        
+        // Pré-carregar próxima imagem
+        const nextImg = new window.Image();
+        nextImg.src = allImages[nextIndex].src;
+      }
+      
+      // Não bloqueamos mais a rolagem da página
     }, 150); // Delay reduzido de 300ms para 150ms
   };
 
@@ -110,20 +177,26 @@ export const useModalControls = ({
     }
     setTouchStartX(null);
     setTouchEndX(null);
-  };
-
-  // Limpar efeitos quando o componente é desmontado
+  };  // Limpar efeitos quando o componente é desmontado
   useEffect(() => {
     return () => {
-      document.body.style.overflow = "";
+      // Limpar referência global ao fechar modal
+      if (window && (window as any).closeAllModals === closeModal) {
+        (window as any).closeAllModals = undefined;
+      }
+      
+      // Garantir que a navbar seja restaurada quando o componente for desmontado
+      if (window && (window as any).setNavbarVisible) {
+        (window as any).setNavbarVisible(true);
+      }
     };
-  }, []);
-  return {
+  }, []);return {
     // States
     showModal,
     activeIndex,
-    setActiveIndex,
+    setActiveIndex: setActiveIndexWithFade,
     isNavigating,
+    imageOpacity,
 
     // Functions
     openModal,

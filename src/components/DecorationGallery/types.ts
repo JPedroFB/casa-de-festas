@@ -42,6 +42,7 @@ export interface ImageModalProps {
   images: (MainImage | SupportImage)[];
   activeIndex: number;
   theme: string;
+  imageOpacity?: number;
   onClose: () => void;
   onNext: () => void;
   onPrev: () => void;

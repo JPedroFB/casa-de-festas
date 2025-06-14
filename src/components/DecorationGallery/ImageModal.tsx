@@ -7,6 +7,7 @@ const ImageModal = ({
   images,
   activeIndex,
   theme,
+  imageOpacity = 1,
   onClose,
   onNext,
   onPrev,
@@ -22,6 +23,14 @@ const ImageModal = ({
     if (e.key === "ArrowRight") onNext();
     if (e.key === "ArrowLeft") onPrev();
   });
+
+  // Handler para fechar modal apenas quando clicado exatamente no fundo
+  const handleBackdropClick = (e: React.MouseEvent) => {
+    // Verificar se o clique foi exatamente no backdrop, não em seus filhos
+    if (e.target === e.currentTarget) {
+      onClose();
+    }
+  };
 
   const handleTouchStart = onTouchStart || ((e: React.TouchEvent) => {
     const touchStartX = e.touches[0].clientX;
@@ -63,20 +72,16 @@ const ImageModal = ({
   }, [activeIndex, images, isOpen]);
 
   if (!isOpen) return null;
-
-  return (
-    <div
+  return (    <div
       id="decoration-modal"
-      className="fixed inset-0 z-50 flex items-center justify-center bg-black backdrop-blur-sm animate-fadeIn"
-      onClick={onClose}
+      className="fixed inset-0 z-[100] flex items-center justify-center bg-black/80 backdrop-blur-sm animate-fadeIn overflow-auto"
+      onClick={handleBackdropClick} // Ao clicar no fundo escuro, o modal fecha
       onKeyDown={handleKeyDown}
       tabIndex={-1}
       role="dialog"
       aria-modal="true"
-    >
-      <div
+    >      <div
         className="relative w-full h-full flex items-center justify-center animate-zoomIn"
-        onClick={(e) => e.stopPropagation()}
         onTouchStart={handleTouchStart}
         onTouchMove={handleTouchMove}
         onTouchEnd={handleTouchEnd}
@@ -115,15 +120,18 @@ const ImageModal = ({
               src={images[activeIndex].src}
               alt={images[activeIndex].alt || "Imagem ampliada"}
               fill
-              style={{ objectFit: "contain", objectPosition: "center" }}
+              style={{ 
+                objectFit: "contain", 
+                objectPosition: "center",
+                opacity: imageOpacity,
+                transition: "opacity 150ms ease-in-out"
+              }}
               sizes="100vw"
               priority
-              className="transition-opacity duration-150"
+              className="transition-all duration-150"
             />
           </div>
-        </div>
-
-        {/* Navegação por setas modernizadas */}
+        </div>        {/* Navegação por setas modernizadas */}
         {images.length > 1 && (
           <>
             <button
@@ -167,9 +175,7 @@ const ImageModal = ({
               </svg>
             </button>
           </>
-        )}
-
-        {/* Indicadores modernizados */}
+        )}        {/* Indicadores modernizados */}
         <div className="absolute bottom-8 sm:bottom-10 left-0 right-0 flex justify-center gap-2 py-2">
           <div className="bg-black/60 backdrop-blur-md px-3 py-2 sm:py-3 rounded-full flex gap-2 sm:gap-3">
             {images.map((_, idx) => (

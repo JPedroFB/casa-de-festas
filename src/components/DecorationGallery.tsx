@@ -44,12 +44,12 @@ const DecorationGallery = ({
     showScrollIndicators,
     scrollLeft,
     scrollRight,
-  } = useScrollControls();
-  // Hook para controle do modal
+  } = useScrollControls();  // Hook para controle do modal
   const {
     showModal,
     activeIndex,
     setActiveIndex,
+    imageOpacity,
     openModal,
     closeModal,
     nextImage,
@@ -133,6 +133,7 @@ const DecorationGallery = ({
         images={allImages}
         activeIndex={activeIndex}
         theme={theme}
+        imageOpacity={imageOpacity}
         onClose={closeModal}
         onNext={nextImage}
         onPrev={prevImage}

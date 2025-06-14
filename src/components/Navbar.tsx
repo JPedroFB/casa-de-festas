@@ -15,6 +15,25 @@ const Navbar = () => {
   const [showNavbar, setShowNavbar] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [forceHidden, setForceHidden] = useState(false);
+
+  // Registrar função global para controle de visibilidade
+  useEffect(() => {
+    if (window) {
+      (window as any).setNavbarVisible = (visible: boolean) => {
+        setForceHidden(!visible);
+        if (!visible) {
+          setMobileMenuOpen(false); // Fechar menu mobile se estiver aberto
+        }
+      };
+    }
+    
+    return () => {
+      if (window && (window as any).setNavbarVisible) {
+        delete (window as any).setNavbarVisible;
+      }
+    };
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -58,7 +77,7 @@ const Navbar = () => {
   };  return (
     <nav
       className={`fixed top-0 left-0 w-full z-50 bg-gradient-to-r from-emerald-500/90 via-purple-500/90 to-yellow-400/90 text-white transition-transform duration-300 ${
-        showNavbar ? "translate-y-0" : "-translate-y-full"
+        (showNavbar && !forceHidden) ? "translate-y-0" : "-translate-y-full"
       }`}
     >
       <div className="container mx-auto px-4 py-4">
