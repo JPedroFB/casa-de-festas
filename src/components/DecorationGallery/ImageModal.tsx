@@ -11,26 +11,29 @@ const ImageModal = ({
   onNext,
   onPrev,
   onSetIndex,
+  onKeyDown,
+  onTouchStart,
+  onTouchMove,
+  onTouchEnd,
 }: ImageModalProps) => {
-  // Fechar modal com escape ou ao clicar fora
-  const handleKeyDown = (e: React.KeyboardEvent) => {
+  // Fallback handlers se não fornecidos
+  const handleKeyDown = onKeyDown || ((e: React.KeyboardEvent) => {
     if (e.key === "Escape") onClose();
     if (e.key === "ArrowRight") onNext();
     if (e.key === "ArrowLeft") onPrev();
-  };
+  });
 
-  // Navegação por gesto de arrastar no mobile
-  const handleTouchStart = (e: React.TouchEvent) => {
+  const handleTouchStart = onTouchStart || ((e: React.TouchEvent) => {
     const touchStartX = e.touches[0].clientX;
     (e.currentTarget as HTMLElement).dataset.touchStartX = touchStartX.toString();
-  };
+  });
 
-  const handleTouchMove = (e: React.TouchEvent) => {
+  const handleTouchMove = onTouchMove || ((e: React.TouchEvent) => {
     const touchEndX = e.touches[0].clientX;
     (e.currentTarget as HTMLElement).dataset.touchEndX = touchEndX.toString();
-  };
+  });
 
-  const handleTouchEnd = (e: React.TouchEvent) => {
+  const handleTouchEnd = onTouchEnd || ((e: React.TouchEvent) => {
     const element = e.currentTarget as HTMLElement;
     const touchStartX = parseFloat(element.dataset.touchStartX || "0");
     const touchEndX = parseFloat(element.dataset.touchEndX || "0");
@@ -42,7 +45,7 @@ const ImageModal = ({
         onPrev();
       }
     }
-  };
+  });
 
   if (!isOpen) return null;
 

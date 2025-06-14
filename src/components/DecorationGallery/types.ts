@@ -46,6 +46,10 @@ export interface ImageModalProps {
   onNext: () => void;
   onPrev: () => void;
   onSetIndex: (index: number) => void;
+  onKeyDown?: (e: React.KeyboardEvent) => void;
+  onTouchStart?: (e: React.TouchEvent) => void;
+  onTouchMove?: (e: React.TouchEvent) => void;
+  onTouchEnd?: () => void;
 }
 
 export interface NavigationControlsProps {
