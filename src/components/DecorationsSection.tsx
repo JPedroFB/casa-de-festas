@@ -1,6 +1,7 @@
 "use client";
 
 import { Henny_Penny } from "next/font/google";
+import Link from "next/link";
 import SectionDivider from "./SectionDivider";
 
 const hennyPenny = Henny_Penny({
@@ -24,57 +25,53 @@ export default function DecorationsSection() {
         <p className="text-center text-gray-600 max-w-2xl mx-auto mb-12 px-2.5 sm:px-0">
           Transforme sua celebração em um evento mágico com nossas decorações
           temáticas personalizadas
-        </p>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 mb-12 px-2.5 sm:px-0">
-          <div className="rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-shadow group">
+        </p>        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 mb-12 px-2.5 sm:px-0">
+          <Link href="/decoracoes" className="rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-shadow group">
             <div className="relative h-64 overflow-hidden">
               <img
-                src="/images/mesas.png"
+                src="/images/albuns/1/foto1.png"
                 alt="Decoração de aniversário"
                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-purple-900/70 to-transparent flex items-end p-4">
                 <span className="text-white font-medium text-lg">
-                  Aniversário Encantado
+                  Mundo Bita
                 </span>
               </div>
             </div>
-          </div>
-
-          <div className="rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-shadow group">
+          </Link>
+          
+          <Link href="/decoracoes" className="rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-shadow group">
             <div className="relative h-64 overflow-hidden">
               <img
-                src="/images/mesas2.png"
+                src="/images/albuns/1/foto2.png"
                 alt="Decoração de casamento"
                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-purple-900/70 to-transparent flex items-end p-4">
                 <span className="text-white font-medium text-lg">
-                  Sonho de Casamento
+                  Principe
                 </span>
               </div>
             </div>
-          </div>
-
-          <div className="rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-shadow group">
+          </Link>
+          
+          <Link href="/decoracoes" className="rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-shadow group">
             <div className="relative h-64 overflow-hidden">
               <img
-                src="/images/brinquedos.png"
+                src="/images/albuns/1/foto3.png"
                 alt="Decoração infantil"
                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-purple-900/70 to-transparent flex items-end p-4">
                 <span className="text-white font-medium text-lg">
-                  Mundo da Fantasia
+                  Miraculous Ladybug
                 </span>
               </div>
             </div>
-          </div>
-        </div>
-
-        <div className="text-center px-2.5 sm:px-0">
-          <a
+          </Link>
+        </div>        <div className="text-center px-2.5 sm:px-0">
+          <Link
             href="/decoracoes"
             className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-purple-600 to-pink-500 text-white font-medium rounded-lg shadow-md hover:from-purple-700 hover:to-pink-600 transition-all hover:shadow-lg"
           >
@@ -91,7 +88,7 @@ export default function DecorationsSection() {
                 clipRule="evenodd"
               />
             </svg>
-          </a>
+          </Link>
         </div>
       </div>
     </section>
