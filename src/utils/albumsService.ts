@@ -7,6 +7,7 @@ export interface AlbumMetadata {
   photographePartner: {
     label: string;
     link: string;
+    profileImage?: string; // Caminho para a imagem de perfil do fotógrafo
   };
 }
 
@@ -56,9 +57,7 @@ export async function getAllAlbums(): Promise<AlbumData[]> {
           ...metadata,
           ...parsedMeta
         };
-      }
-
-      // Busca todas as imagens no álbum
+      }      // Busca todas as imagens no álbum
       const imageFiles = fs.readdirSync(albumPath)
         .filter(file =>
           file.endsWith('.jpg') ||
@@ -67,9 +66,19 @@ export async function getAllAlbums(): Promise<AlbumData[]> {
           file.endsWith('.webp')
         );
 
+      // Verifica se existe imagem de perfil do fotógrafo
+      const profileImageFile = imageFiles.find(file => file === 'profile.png');
+      if (profileImageFile && metadata.photographePartner) {
+        metadata.photographePartner.profileImage = `/images/albuns/${folderId}/${profileImageFile}`;
+      }
+
       // Define a imagem principal e as imagens de suporte
       let mainImageFile = imageFiles.find(file => file === 'principal.png') || imageFiles[0];
-      const supportImageFiles = imageFiles.filter(file => file !== mainImageFile && file !== 'meta.json');
+      const supportImageFiles = imageFiles.filter(file =>
+        file !== mainImageFile &&
+        file !== 'meta.json' &&
+        file !== 'profile.png'
+      );
 
       // Constrói os caminhos relativos para as imagens
       const mainImage = {

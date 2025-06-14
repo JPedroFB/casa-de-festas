@@ -18,6 +18,7 @@ interface DecorationGalleryProps {
   photographer?: {
     name: string;
     instagram: string;
+    instagramProfile?: string; // Nome de usuário do Instagram para link
     profileImage: string;
   };
 }
@@ -27,6 +28,7 @@ const DEFAULT_THEME = "Unicórnio Encantado";
 const DEFAULT_PHOTOGRAPHER = {
   name: "João Silva",
   instagram: "@fotografiasmagicas",
+  instagramProfile: "fotografiasmagicas",
   profileImage: "https://i.pravatar.cc/100" // Avatar aleatório para teste
 };
 
@@ -158,16 +160,16 @@ const DecorationGallery = ({
               Fotógrafo parceiro: <a href={`https://instagram.com/${photographer.instagram.replace('@', '')}`}
                 target="_blank" rel="noopener noreferrer"
                 className="text-purple-600 hover:underline">
-                {photographer.instagram}
+                {photographer.instagramProfile}
               </a>
-            </span>
-            <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full overflow-hidden">
+            </span>            <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full overflow-hidden border border-purple-200">
               <Image
                 src={photographer.profileImage}
                 alt={`Perfil de ${photographer.name}`}
                 width={32}
                 height={32}
-                className="object-cover"
+                className="object-cover w-full h-full"
+                unoptimized={photographer.profileImage.includes('pravatar')} // Não otimizar URLs externas
               />
             </div>
           </div>

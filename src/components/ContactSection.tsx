@@ -17,7 +17,7 @@ export default function ContactSection({
   description
 }: ContactSectionProps) {
   return (
-    <section id="contato" className="w-full bg-indigo-950 text-white py-16">
+    <section id="contato" className="w-full bg-indigo-950 text-white py-16 relative">
       <div className="w-full sm:container mx-auto px-2.5 sm:px-4 sm:w-[90%] max-w-[1920px]">
         <h2 className="text-4xl font-bold text-center mb-8">
           <span className={hennyPenny.className}>{title}</span>

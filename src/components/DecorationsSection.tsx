@@ -1,6 +1,7 @@
 "use client";
 
 import { Henny_Penny } from "next/font/google";
+import SectionDivider from "./SectionDivider";
 
 const hennyPenny = Henny_Penny({
   weight: "400",
@@ -9,17 +10,7 @@ const hennyPenny = Henny_Penny({
 
 export default function DecorationsSection() {
   return (
-    <section id="decoracoes" className="w-full bg-pink-50 relative pb-16">
-      <div className="absolute bottom-0 left-0 w-full h-20 overflow-hidden">
-        <svg
-          viewBox="0 0 1200 120"
-          preserveAspectRatio="none"
-          className="absolute bottom-0 left-0 w-full h-full text-indigo-950"
-          fill="currentColor"
-        >
-          <path d="M0,40 L50,10 L100,50 L150,20 L200,70 L250,30 L300,80 L350,0 L400,60 L450,10 L500,90 L550,20 L600,70 L650,30 L700,80 L750,10 L800,50 L850,30 L900,60 L950,0 L1000,50 L1050,20 L1100,80 L1150,40 L1200,60 L1200,120 L0,120 Z"></path>
-        </svg>
-      </div>
+    <section id="decoracoes" className="w-full bg-pink-50 relative pb-16">      <SectionDivider pattern="zigzag" color="text-indigo-950" position="bottom" />
 
       <div className="w-full sm:container mx-auto py-16 px-2.5 sm:px-4 sm:w-[90%] max-w-[1920px]">
         <h2 className="text-4xl font-bold text-center mb-4 bg-clip-text text-transparent bg-gradient-to-r from-pink-500 to-purple-500 px-2.5 sm:px-0">

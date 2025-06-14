@@ -5,6 +5,7 @@ import Footer from "../../components/Footer";
 import { Henny_Penny } from "next/font/google";
 import DecorationGallery from "../../components/DecorationGallery";
 import { getAllAlbums } from "../../utils/albumsService";
+import SectionDivider from "../../components/SectionDivider";
 
 const hennyPenny = Henny_Penny({
   weight: "400",
@@ -17,15 +18,15 @@ async function DecorationsContent() {
     return (
     <div className="space-y-12 md:space-y-16">
       {albums.map((album) => (
-        <div key={album.id} className="mb-12">
-          <DecorationGallery
+        <div key={album.id} className="mb-12">          <DecorationGallery
             mainImage={album.mainImage}
             supportImages={album.supportImages}
             theme={album.tema}
             photographer={{
               name: album.photographePartner?.label || "Fotógrafo",
               instagram: album.photographePartner?.link || "#",
-              profileImage: "https://i.pravatar.cc/100" // Avatar genérico
+              instagramProfile: album.photographePartner?.label || "#",
+              profileImage: album.photographePartner?.profileImage || "https://i.pravatar.cc/100" // Usa a imagem de perfil se disponível, ou avatar genérico como fallback
             }}
           />
         </div>
@@ -50,17 +51,7 @@ export default function Decoracoes() {
                 Transformamos qualquer ambiente em um cenário mágico para seu evento especial, com decorações exclusivas e personalizadas.
               </p>
             </div>
-          </div>
-          <div className="absolute bottom-0 left-0 w-full h-20 overflow-hidden">
-            <svg
-              viewBox="0 0 1200 120"
-              preserveAspectRatio="none"
-              className="absolute bottom-0 left-0 w-full h-full text-pink-100"
-              fill="currentColor"
-            >
-              <path d="M0,0 L120,40 L240,0 L360,40 L480,0 L600,40 L720,0 L840,40 L960,0 L1080,40 L1200,0 L1200,120 L0,120 Z"></path>
-            </svg>
-          </div>
+          </div>          <SectionDivider pattern="wave" color="text-pink-100" position="bottom" />
         </section>
 
         {/* Galerias de Decorações */}
@@ -69,23 +60,16 @@ export default function Decoracoes() {
             <Suspense fallback={<p className="text-center text-xl">Carregando galerias...</p>}>
               <DecorationsContent />
             </Suspense>
-          </div>
-          <div className="absolute bottom-0 left-0 w-full h-20 overflow-hidden">
-            <svg
-              viewBox="0 0 1200 120"
-              preserveAspectRatio="none"
-              className="absolute bottom-0 left-0 w-full h-full text-pink-100"
-              fill="currentColor"
-            >
-              <path d="M0,40 L50,10 L100,50 L150,20 L200,70 L250,30 L300,80 L350,0 L400,60 L450,10 L500,90 L550,20 L600,70 L650,30 L700,80 L750,10 L800,50 L850,30 L900,60 L950,0 L1000,50 L1050,20 L1100,80 L1150,40 L1200,60 L1200,120 L0,120 Z"></path>
-            </svg>          </div>
+          </div>          <SectionDivider pattern="zigzag" color="text-pink-100" position="bottom" />
         </section>
-        
-        {/* Seção de Contato */}
-        <ContactSection 
-          title="Vamos Criar Sua Decoração de Sonho?"
-          description="Entre em contato conosco para discutir sua visão e transformá-la em uma experiência única e memorável."
-        />
+          {/* Seção de Contato */}
+        <section className="relative">
+          <ContactSection 
+            title="Vamos Criar Sua Decoração de Sonho?"
+            description="Entre em contato conosco para discutir sua visão e transformá-la em uma experiência única e memorável."
+          />
+          <SectionDivider pattern="wave" color="text-indigo-950" position="bottom" />
+        </section>
       </main>
       <Footer />
     </>
