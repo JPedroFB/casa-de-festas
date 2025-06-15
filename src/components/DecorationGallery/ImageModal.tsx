@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import { ImageModalProps } from "./types";
 
@@ -17,6 +17,27 @@ const ImageModal = ({
   onTouchMove,
   onTouchEnd,
 }: ImageModalProps) => {
+  // Estado para controlar se está em dispositivo móvel
+  const [isMobile, setIsMobile] = useState(false);
+
+  // Detectar se é um dispositivo móvel
+  useEffect(() => {
+    const checkIsMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    
+    // Verificar inicialmente
+    checkIsMobile();
+    
+    // Adicionar listener para redimensionamento
+    window.addEventListener('resize', checkIsMobile);
+    
+    // Cleanup
+    return () => {
+      window.removeEventListener('resize', checkIsMobile);
+    };
+  }, []);
+
   // Fallback handlers se não fornecidos
   const handleKeyDown = onKeyDown || ((e: React.KeyboardEvent) => {
     if (e.key === "Escape") onClose();
@@ -131,8 +152,8 @@ const ImageModal = ({
               className="transition-all duration-150"
             />
           </div>
-        </div>        {/* Navegação por setas modernizadas */}
-        {images.length > 1 && (
+        </div>        {/* Navegação por setas modernizadas - ocultas em mobile */}
+        {images.length > 1 && !isMobile && (
           <>
             <button
               className="absolute left-4 sm:left-8 md:left-12 top-1/2 -translate-y-1/2 bg-black/40 hover:bg-black/60 text-white p-3 sm:p-4 rounded-full backdrop-blur-md transition-all duration-300 border border-white/10"
@@ -192,6 +213,7 @@ const ImageModal = ({
             ))}
           </div>
         </div>
+  
       </div>
     </div>
   );
