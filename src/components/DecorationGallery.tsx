@@ -4,8 +4,6 @@ import { useRef } from "react";
 import {
   GalleryHeader,
   ImageButton,
-  NavigationControls,
-  ScrollIndicator,
   GalleryStyles,
   DecorationGalleryProps,
   SupportImage,
@@ -36,9 +34,6 @@ const DecorationGallery = ({
   // Hook para controle de scroll da galeria
   const {
     scrollContainerRef,
-    showScrollIndicators,
-    scrollLeft,
-    scrollRight,
   } = useScrollControls();
 
   return (
@@ -51,11 +46,7 @@ const DecorationGallery = ({
       {/* Galeria de imagens com scroll horizontal e controles de navegação */}
       <div className="relative">
         {/* Botões de navegação (visíveis em telas maiores) */}
-        <NavigationControls
-          onScrollLeft={scrollLeft}
-          onScrollRight={scrollRight}
-          showScrollIndicators={showScrollIndicators}
-        />{" "}
+       
         <div
           ref={scrollContainerRef}
           className="relative overflow-x-auto pb-3 sm:pb-5 scroll-smooth hide-scrollbar h-[300px] sm:h-[420px] md:h-[540px]"

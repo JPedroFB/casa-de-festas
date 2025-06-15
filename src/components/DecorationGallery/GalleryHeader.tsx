@@ -6,7 +6,8 @@ const GalleryHeader = ({ theme, photographer }: GalleryHeaderProps) => {
     <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center mb-4 sm:mb-6 gap-3 sm:gap-0">
       <h3 className="text-xl sm:text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-indigo-600 to-purple-600 dark:from-indigo-400 dark:to-purple-400">
         Tema: {theme}
-      </h3>      {photographer && (
+      </h3>{" "}
+      {photographer && (
         <div className="flex items-center justify-between bg-gradient-to-r from-purple-50 to-indigo-50 dark:from-purple-900/30 dark:to-indigo-900/30 px-4 py-1.5 rounded-full">
           <div className="flex items-center gap-3 mr-3">
             <svg
