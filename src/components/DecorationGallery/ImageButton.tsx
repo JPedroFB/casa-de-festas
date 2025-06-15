@@ -4,27 +4,20 @@ import { ImageButtonProps } from "./types";
 const ImageButton = ({
   image,
   isMain = false,
-  onClick,
-  onRegisterRef,
   className = "",
 }: ImageButtonProps) => {
   const defaultClassName = isMain
-    ? "relative w-[280px] h-full sm:w-[400px] sm:h-full md:w-[520px] md:h-full rounded-2xl overflow-hidden cursor-zoom-in group ring-1 ring-indigo-200 dark:ring-indigo-800 shadow-md hover:shadow-lg transition-shadow duration-300"
-    : "relative w-[180px] h-full sm:w-[260px] sm:h-[calc(33.33%-10px)] rounded-2xl overflow-hidden cursor-zoom-in group ring-1 ring-indigo-200 dark:ring-indigo-800 shadow-md hover:shadow-lg transition-all duration-300";
+    ? "relative w-[280px] h-full sm:w-[400px] sm:h-full md:w-[520px] md:h-full rounded-2xl overflow-hidden group ring-1 ring-indigo-200 dark:ring-indigo-800 shadow-md hover:shadow-lg transition-shadow duration-300"
+    : "relative w-[180px] h-full sm:w-[260px] sm:h-[calc(33.33%-10px)] rounded-2xl overflow-hidden group ring-1 ring-indigo-200 dark:ring-indigo-800 shadow-md hover:shadow-lg transition-all duration-300";
 
   const iconSize = isMain ? "w-6 h-6" : "w-5 h-5";
   const iconPadding = isMain ? "p-3" : "p-2";
 
   return (
-    <button
-      ref={(el) => onRegisterRef(image.src, el)}
+    <div
       className={`${defaultClassName} ${className}`}
-      onClick={() => onClick(image.src)}
-      onKeyDown={(e) => {
-        if (e.key === "Enter" || e.key === " ") onClick(image.src);
-      }}
       tabIndex={0}
-      aria-label={`Expandir imagem${isMain ? " principal" : ""}: ${image.alt}`}
+      aria-label={`Imagem${isMain ? " principal" : ""}: ${image.alt}`}
     >
       <Image
         src={image.src}
@@ -52,12 +45,12 @@ const ImageButton = ({
             <path
               strokeLinecap="round"
               strokeLinejoin="round"
-              d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"
+              d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5zm10.5-11.25h.008v.008h-.008V8.25zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z"
             />
           </svg>
         </div>
       </div>
-    </button>
+    </div>
   );
 };
 

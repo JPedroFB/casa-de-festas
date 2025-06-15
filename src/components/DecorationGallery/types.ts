@@ -27,8 +27,6 @@ export interface DecorationGalleryProps {
 export interface ImageButtonProps {
   image: MainImage | SupportImage;
   isMain?: boolean;
-  onClick: (src: string) => void;
-  onRegisterRef: (src: string, element: HTMLButtonElement | null) => void;
   className?: string;
 }
 

@@ -6,11 +6,9 @@ import {
   ImageButton,
   NavigationControls,
   ScrollIndicator,
-  ImageModal,
   GalleryStyles,
   DecorationGalleryProps,
   SupportImage,
-  useModalControls,
   useScrollControls,
 } from "./DecorationGallery/";
 
@@ -29,9 +27,6 @@ const DecorationGallery = ({
   theme = DEFAULT_THEME,
   photographer = DEFAULT_PHOTOGRAPHER,
 }: DecorationGalleryProps) => {
-  // Mapa de referências para os botões das imagens
-  const imageButtonRefs = useRef<Map<string, HTMLButtonElement>>(new Map());
-  
   // Referência para o container da galeria para rolagem
   const galleryContainerRef = useRef<HTMLDivElement>(null);
 
@@ -44,36 +39,9 @@ const DecorationGallery = ({
     showScrollIndicators,
     scrollLeft,
     scrollRight,
-  } = useScrollControls();  // Hook para controle do modal
-  const {
-    showModal,
-    activeIndex,
-    setActiveIndex,
-    imageOpacity,
-    openModal,
-    closeModal,
-    nextImage,
-    prevImage,
-    handleKeyDown,
-    handleTouchStart,
-    handleTouchMove,
-    handleTouchEnd,
-  } = useModalControls({
-    allImages,
-    imageButtonRefs,
-    scrollContainerRef,
-    galleryContainerRef,
-  });
+  } = useScrollControls();
 
-  // Função para registrar os botões de imagem
-  const registerImageButton = (
-    src: string,
-    element: HTMLButtonElement | null
-  ) => {
-    if (element) {
-      imageButtonRefs.current.set(src, element);
-    }
-  };  return (
+  return (
     <div 
       ref={galleryContainerRef}
       className="w-full bg-white dark:bg-gray-900 rounded-2xl shadow-xl overflow-hidden p-3 md:p-8 backdrop-blur-sm bg-opacity-90 dark:bg-opacity-90"
@@ -99,8 +67,6 @@ const DecorationGallery = ({
               <ImageButton
                 image={mainImage}
                 isMain={true}
-                onClick={openModal}
-                onRegisterRef={registerImageButton}
               />
             </div>{" "}
             {/* Grid de imagens de suporte organizadas em colunas - layout moderno */}
@@ -109,8 +75,6 @@ const DecorationGallery = ({
                 <ImageButton
                   key={img.src}
                   image={img}
-                  onClick={openModal}
-                  onRegisterRef={registerImageButton}
                   className="sm:h-[calc(33.33%-10px)]"
                 />
               ))}
@@ -120,29 +84,12 @@ const DecorationGallery = ({
               <ImageButton
                 key={img.src}
                 image={img}
-                onClick={openModal}
-                onRegisterRef={registerImageButton}
                 className="sm:h-full"
               />
             ))}
           </div>{" "}
         </div>
-      </div>{" "}      {/* Modal modernizado para visualização de imagens em tela cheia */}
-      <ImageModal
-        isOpen={showModal}
-        images={allImages}
-        activeIndex={activeIndex}
-        theme={theme}
-        imageOpacity={imageOpacity}
-        onClose={closeModal}
-        onNext={nextImage}
-        onPrev={prevImage}
-        onSetIndex={setActiveIndex}
-        onKeyDown={handleKeyDown}
-        onTouchStart={handleTouchStart}
-        onTouchMove={handleTouchMove}
-        onTouchEnd={handleTouchEnd}
-      />{" "}
+      </div>{" "}
       {/* Estilos aprimorados para animações e interações */}
       <GalleryStyles />
     </div>
