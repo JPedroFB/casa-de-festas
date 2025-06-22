@@ -44,8 +44,47 @@ const GalleryStyles = () => {
         100% {
           box-shadow: 0 0 0 0 rgba(126, 34, 206, 0);
         }
-      }      .animate-fadeIn {
+      }
+      
+      @keyframes modalFadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+      
+      @keyframes modalScaleIn {
+        from {
+          opacity: 0;
+          transform: scale(0.95);
+        }
+        to {
+          opacity: 1;
+          transform: scale(1);
+        }
+      }
+      
+      .animate-fadeIn {
         animation: fadeIn 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      }
+      
+      .modal-fade-in {
+        animation: modalFadeIn 0.3s ease-out;
+      }
+      
+      .modal-scale-in {
+        animation: modalScaleIn 0.3s ease-out;
+      }
+      
+      .hide-scrollbar {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+      }
+      
+      .hide-scrollbar::-webkit-scrollbar {
+        display: none;
       }
 
       .animate-zoomIn {
